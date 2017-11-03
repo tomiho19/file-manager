@@ -2,7 +2,7 @@ import { createStore, combineReducers } from 'redux'
 import CONSTANTS from "../constants/AppConstants"
 
 const reducer = (state,action) => {
-    switch (action){
+    switch (action.type){
         case CONSTANTS.UPLOAD_NEW_FILE: console.log("1");
             break;
         case CONSTANTS.CREATE_NEW_FILE: console.log("2");
@@ -12,6 +12,9 @@ const reducer = (state,action) => {
         default:return state
     }
 };
+
 const store = createStore(reducer);
 
 export default store;
+
+
