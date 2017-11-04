@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Search from './Search'
 import FileItem from './FileItem'
@@ -11,6 +12,10 @@ import headers from "../assets/headers"
 
 class Files extends Component{
 
+    // getChildContext() {
+    //     return {idFile: this.state.FileId};
+    // }
+
     constructor(props){
         super(props);
         this.state = {
@@ -18,7 +23,8 @@ class Files extends Component{
             _preSearchData : this.props.files,
             sortby : null,
             descending : false,
-            selected : false
+            selected : false,
+            currentFileId : null
         };
     }
 
@@ -72,12 +78,14 @@ class Files extends Component{
 
     }
 
-    toggleSelected(e){
-        console.log(e.target);
+    toggleSelected(){
         this.setState({
-            selected: true
-        })
+            selected : true,
+            currentFileId : this.props.fileId
+        });
     }
+
+
 
     render(){
         return(
@@ -100,23 +108,27 @@ class Files extends Component{
                         this.state.data.map(el => {
                             return (
                                 <FileItem key={el.FileId}
-                                fileKey = {el.FileId}
+                                fileId = {el.FileId}
                                 fileName = {el.FileName}
                                 fileType = {el.FileType}
                                 fileSize = {el.FileSize}
-                                selected = {this.toggleSelected.bind(this)}
+                                selected = {this.toggleSelected}
                                 />
                             )
                         })
                     }
                     </tbody>
                 </table>
-                <Actions selected={this.state.selected}/>
+                <Actions selected={this.state.selected} />
                 <Search methodForSearch = {this._search.bind(this)}/>
             </div>
         )
     }
 }
+
+// Files.childContextTypes = {
+//     color: PropTypes.string
+// };
 
 const mapStateToProps = (state)=>{
     return{

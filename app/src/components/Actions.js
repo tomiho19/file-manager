@@ -1,21 +1,22 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 export default class Actions extends Component{
 
-    download(){
-
+    download(FileId){
+        this.context.router.push(`/Files/download/${FileId}`);
     }
 
-    preview(){
-
+    preview(FileId){
+        this.context.router.push(`/Files/preview/${FileId}`);
     }
 
-    bookmark(){
-
+    bookmark(FileId){
+        this.context.router.push(`/Files/bookmarks/${FileId}`);
     }
 
-    edit(){
-
+    edit(FileId){
+        this.context.router.push(`/Files/edit/${FileId}`);
     }
 
     render(){
@@ -24,16 +25,16 @@ export default class Actions extends Component{
                 ?
                 <div className={"actions"}>
                     <div className="action">
-                        <a>Download</a><i> </i>
+                        <a onClick={this.download.bind(this)}>Download</a><i> </i>
                     </div>
                     <div className="action">
-                        <a>Preview</a><i> </i>
+                        <a onClick={this.preview.bind(this)}>Preview</a><i> </i>
                     </div>
                     <div className="action">
-                        <a>Bookmark</a><i> </i>
+                        <a onClick={this.bookmark.bind(this)}>Bookmark</a><i> </i>
                     </div>
                     <div className="action">
-                        <a>Edit</a><i> </i>
+                        <a onClick={this.edit.bind(this)}>Edit</a><i> </i>
                     </div>
                     <p>File selected : </p>
                 </div>
@@ -42,3 +43,7 @@ export default class Actions extends Component{
 
     }
 }
+
+// Actions.contextTypes = {
+//     color: PropTypes.string
+// };
