@@ -2,10 +2,6 @@ import React, {Component} from 'react'
 
 export default class Actions extends Component{
 
-    constructor(props){
-        super(props);
-    }
-
     download(){
 
     }
