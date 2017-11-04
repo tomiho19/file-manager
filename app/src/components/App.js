@@ -8,7 +8,9 @@ import Create from "./Create"
 import Upload from "./Upload"
 import Root from "./Root"
 import store from "../store/store"
+
 window.store = store;
+
 export default class App extends Component{
     render(){
        return(

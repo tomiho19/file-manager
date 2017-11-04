@@ -855,7 +855,7 @@ The above form is looking for a variable called `REACT_APP_SECRET_CODE` from the
 value, we need to have it defined in the environment. This can be done using two ways: either in your shell or in
 a `.env` file. Both of these ways are described in the next few sections.
 
-Having access to the `NODE_ENV` is also useful for performing actions conditionally:
+Having access to the `NODE_ENV` is also useful for performing actions.js conditionally:
 
 ```js
 if (process.env.NODE_ENV !== 'production') {

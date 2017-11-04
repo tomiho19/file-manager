@@ -2,7 +2,7 @@ import CONSTANTS from "../constants/AppConstants"
 
 export const createNewFile = () => {
     return {
-        type: constants.CONNECTED_NEW_USER,
+        type: CONSTANTS.CONNECTED_NEW_USER,
     }
 }
 export const uploadNewFile = (wayToUpload) => {
@@ -14,7 +14,7 @@ export const uploadNewFile = (wayToUpload) => {
 export const deleteFile = ({ id }) => {
     return {
         type: CONSTANTS.DELETE_FILE,
-        id
+        id : FileId
     }
 }
 

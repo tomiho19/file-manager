@@ -1,19 +1,10 @@
-import { createStore, combineReducers } from 'redux'
-import CONSTANTS from "../constants/AppConstants"
+import { createStore } from 'redux'
+import managerReducer from '../reducer/index'
 
-const reducer = (state,action) => {
-    switch (action.type){
-        case CONSTANTS.UPLOAD_NEW_FILE: console.log("1");
-            break;
-        case CONSTANTS.CREATE_NEW_FILE: console.log("2");
-            break;
-        case CONSTANTS.DELETE_FILE: console.log("3");
-            break;
-        default:return state
-    }
-};
-
-const store = createStore(reducer);
+const store = createStore(
+    managerReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;
 
