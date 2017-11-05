@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import FineUploaderTraditional from 'fine-uploader-wrappers'
 import Gallery from 'react-fine-uploader'
-
-// ...or load this specific CSS file using a <link> tag in your document
 import 'react-fine-uploader/gallery/gallery.css'
 
 const uploader = new FineUploaderTraditional({
@@ -13,18 +11,29 @@ const uploader = new FineUploaderTraditional({
         },
         deleteFile: {
             enabled: true,
-            endpoint: '/uploads'
+            endpoint: '/uploads/'
         },
         request: {
-            endpoint: '/uploads'
+            endpoint: '/uploads/'
         },
         retry: {
             enableAuto: true
         }
     }
-})
+});
 
 export default class UploadFromPC extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            submittedFiles : []
+        };
+
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log("PROPS:",nextProps);
+    }
     render() {
         return (
             <Gallery uploader={ uploader } />

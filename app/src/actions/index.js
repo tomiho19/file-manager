@@ -8,7 +8,7 @@ export const createNewFile = (name, ftype, size, src) => {
         size,
         src,
     }
-}
+};
 export const uploadNewFile = (name, ftype, size, src, way) => {
     return {
         type: CONSTANTS.UPLOAD_NEW_FILE,
@@ -18,19 +18,19 @@ export const uploadNewFile = (name, ftype, size, src, way) => {
         src,
         way
     }
-}
-export const editFile = (name, ftype, size,) => {
+};
+export const editFile = (id, name, text) => {
     return {
         type: CONSTANTS.EDIT_FILE,
+        id,
         name,
-        ftype,
-        size,
+        text
     }
-}
+};
 export const deleteFile = ({ id }) => {
     return {
         type: CONSTANTS.DELETE_FILE,
-        id : FileId
+        id : id
     }
 }
 
