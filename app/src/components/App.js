@@ -21,15 +21,14 @@ export default class App extends Component{
         <Provider store={store}>
            <Router history={hashHistory}>
                <Route path='/' component={Root}>
-                   <Route path={"/Files"} component={Files}>
-                       <Route path={"/Files/download/:id"} component={Download}/>
-                       <Route path={"/Files/preview/:id"} component={Preview}/>
-                       <Route path={"/Files/bookmarks/:id"} component={Bookmarks}/>
-                       <Route path={"/Files/edit/:id"} component={Edit}/>
-                   </Route>
+                   <Route path={"/Files"} component={Files}/>
                    <Route path={"/Bookmarks"} component={Bookmarks}/>
                    <Route path={"/Upload"} component={Upload}/>
                    <Route path={"/Create"} component={Create}/>
+                   <Route path={"/download/:id"} component={Download}/>
+                   <Route path={"/preview/:id"} component={Preview}/>
+                   <Route path={"/bookmarks/:id"} component={Bookmarks}/>
+                   <Route path={"/edit/:id"} component={Edit}/>
                </Route>
            </Router>
         </Provider>

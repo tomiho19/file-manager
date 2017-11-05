@@ -1,42 +1,50 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 
 export default class Actions extends Component{
 
-    download(FileId){
-        this.context.router.push(`/Files/download/${FileId}`);
+    constructor(props){
+        super(props);
+        this.state = {
+            router : this.props.router,
+        };
     }
 
-    preview(FileId){
-        this.context.router.push(`/Files/preview/${FileId}`);
+    _download(){
+        this.state.router.push(`download/${this.props.id}`);
     }
 
-    bookmark(FileId){
-        this.context.router.push(`/Files/bookmarks/${FileId}`);
+    _bookmark(){
+        this.state.router.replace(`/bookmarks/${this.props.id}`);
     }
 
-    edit(FileId){
-        this.context.router.push(`/Files/edit/${FileId}`);
+    _edit(){
+        this.state.router.replace(`edit/${this.props.id}`);
     }
 
     render(){
+        let { src } = this.props;
+
+        let downloadName = src.toString().split('\/');
+        let index = downloadName.length - 1;
+        let name = downloadName[index];
+
         return <div className="actions">
             {this.props.selected
                 ?
                 <div className={"actions"}>
                     <div className="action">
-                        <a onClick={this.download.bind(this)}>Download</a><i> </i>
+                        <a href={src} download={name}>Download</a><i>  </i>
                     </div>
                     <div className="action">
-                        <a onClick={this.preview.bind(this)}>Preview</a><i> </i>
+                        <a href={src} className={"popup-link"}>Preview</a>
                     </div>
                     <div className="action">
-                        <a onClick={this.bookmark.bind(this)}>Bookmark</a><i> </i>
+                        <button className={"btn btn-download"} onClick={this._bookmark.bind(this)}>Bookmark</button><i> </i>
                     </div>
                     <div className="action">
-                        <a onClick={this.edit.bind(this)}>Edit</a><i> </i>
+                        <button className={"btn btn-download"} onClick={this._edit.bind(this)}>Edit</button><i> </i>
                     </div>
-                    <p>File selected : </p>
+                    <p>File selected : {this.props.name}</p>
                 </div>
                 : <p>Select file at the left side by clicking on it </p>}
         </div>
@@ -44,6 +52,3 @@ export default class Actions extends Component{
     }
 }
 
-// Actions.contextTypes = {
-//     color: PropTypes.string
-// };

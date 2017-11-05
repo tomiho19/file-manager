@@ -2,6 +2,7 @@ import React ,{Component} from 'react'
 
 export default class Download extends Component{
     render(){
-        return(<p>Preview</p>)
+        console.log(this.props.params.id);
+        return(<p> </p>)
     }
 }

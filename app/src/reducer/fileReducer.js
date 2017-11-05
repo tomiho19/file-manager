@@ -5,21 +5,21 @@ const testState = [
         FileName : "TEST",
         FileType : "test.test",
         FileSize : "15mb",
-        FileSrc : "home/alohasid/documents"
+        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/WupftUwtlyY%20(1).jpg"
     },
     {
         FileId : Date.now()+2,
         FileName : "ABBA",
         FileType : "biography.pdf",
         FileSize : "24mb",
-        FileSrc : "home/alohasid/documents"
+        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/WupftUwtlyY%20(1).jpg"
     },
     {
         FileId : Date.now()+3,
         FileName : "AC/DC",
         FileType : "mp3",
         FileSize : "56mb",
-        FileSrc : "home/alohasid/music",
+        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/WupftUwtlyY%20(1).jpg",
     }
 ];
 const fileReducer = (state = testState,action) => {

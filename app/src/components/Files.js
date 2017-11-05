@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 import Search from './Search'
 import FileItem from './FileItem'
@@ -12,10 +11,6 @@ import headers from "../assets/headers"
 
 class Files extends Component{
 
-    // getChildContext() {
-    //     return {idFile: this.state.FileId};
-    // }
-
     constructor(props){
         super(props);
         this.state = {
@@ -24,7 +19,9 @@ class Files extends Component{
             sortby : null,
             descending : false,
             selected : false,
-            currentFileId : null
+            currentFileId : null,
+            currentFileName: "",
+            currentFileSrc: ""
         };
     }
 
@@ -78,10 +75,12 @@ class Files extends Component{
 
     }
 
-    toggleSelected(){
+    _update(id,name,src){
         this.setState({
-            selected : true,
-            currentFileId : this.props.fileId
+            currentFileId : id,
+            currentFileName: name,
+            currentFileSrc : src,
+            selected : true
         });
     }
 
@@ -105,30 +104,34 @@ class Files extends Component{
                     </thead>
                     <tbody>
                     {
-                        this.state.data.map(el => {
+                        this.state.data.map((el,index) => {
                             return (
-                                <FileItem key={el.FileId}
-                                fileId = {el.FileId}
-                                fileName = {el.FileName}
-                                fileType = {el.FileType}
-                                fileSize = {el.FileSize}
-                                selected = {this.toggleSelected}
+                                <FileItem key={index}
+                                     id  = {el.FileId}
+                                    name = {el.FileName}
+                                    type = {el.FileType}
+                                    size = {el.FileSize}
+                                    src  = {el.FileSrc}
+                                 _update = {this._update.bind(this)}
                                 />
                             )
                         })
                     }
                     </tbody>
                 </table>
-                <Actions selected={this.state.selected} />
+                {this.props.children}
+                <Actions selected={this.state.selected}
+                         id = {this.state.currentFileId}
+                         router = {this.props.router}
+                         name = {this.state.currentFileName}
+                         src ={this.state.currentFileSrc}
+                />
                 <Search methodForSearch = {this._search.bind(this)}/>
             </div>
         )
     }
 }
 
-// Files.childContextTypes = {
-//     color: PropTypes.string
-// };
 
 const mapStateToProps = (state)=>{
     return{
