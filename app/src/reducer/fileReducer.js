@@ -5,14 +5,14 @@ const testState = [
         FileName : "TEST",
         FileType : "test.test",
         FileSize : "15mb",
-        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/WupftUwtlyY%20(1).jpg"
+        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/JvNtJhwkGc8.jpg"
     },
     {
         FileId : Date.now()+2,
         FileName : "ABBA",
         FileType : "biography.pdf",
         FileSize : "24mb",
-        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/WupftUwtlyY%20(1).jpg"
+        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/14_7840_oboi_standartnye_oboi_windows_xp_1366x768%20(1).jpg"
     },
     {
         FileId : Date.now()+3,

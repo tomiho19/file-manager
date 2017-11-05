@@ -10,6 +10,8 @@ import Root from "./Root"
 import Download from "./Download"
 import Preview from "./Preview"
 import Edit from "./Edit"
+import UploadFromPC from "./UploadFromPC"
+import UploadFromFb from "./UploadFromFB"
 
 import store from "../store/store"
 
@@ -24,6 +26,8 @@ export default class App extends Component{
                    <Route path={"/Files"} component={Files}/>
                    <Route path={"/Bookmarks"} component={Bookmarks}/>
                    <Route path={"/Upload"} component={Upload}/>
+                   <Route path={"/fromPC"} component={UploadFromPC}/>
+                   <Route path={"/fromFB"} component={UploadFromFb}/>
                    <Route path={"/Create"} component={Create}/>
                    <Route path={"/download/:id"} component={Download}/>
                    <Route path={"/preview/:id"} component={Preview}/>

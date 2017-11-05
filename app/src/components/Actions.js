@@ -9,9 +9,7 @@ export default class Actions extends Component{
         };
     }
 
-    _download(){
-        this.state.router.push(`download/${this.props.id}`);
-    }
+
 
     _bookmark(){
         this.state.router.replace(`/bookmarks/${this.props.id}`);
