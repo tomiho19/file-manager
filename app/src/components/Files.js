@@ -127,9 +127,7 @@ class Files extends Component{
                 </table>
                 {this.props.children}
                 <Actions selected={this.state.selected}
-                         id = {this.state.currentFileId}
                          router = {this.props.router}
-                         name = {this.state.currentFileName}
                          src ={this.state.currentFileSrc}
                          dispatch = {this.props.dispatch}
                 />

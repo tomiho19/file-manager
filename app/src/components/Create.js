@@ -20,21 +20,17 @@ class Create extends Component{
         let editedText = this.refs.textArea.value;
         let id = this.state.id;
 
-        if(this.props.id){
+        if(id){
             this.props.dispatch(editFile(id, editedName, editedText));
         }else{
 
             let editedType = this.refs.typeInput.value;
             let editedSize = this.refs.sizeInput.value;
-            let id = Date.now() + Math.random(2%6);
+            let id = Date.now();
 
             this.props.dispatch(createNewFile(id, editedName, editedText, editedType, editedSize));
-            this.refs.typeInput.value = " ";
-            this.refs.sizeInput.value = " ";
-        }
 
-        this.refs.textInput.value = " ";
-        this.refs.textArea.value = " ";
+        }
         this.state.router.replace("/Files");
     }
 

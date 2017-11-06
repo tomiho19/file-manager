@@ -3,7 +3,7 @@ const testState = [
     {
         FileId : "11",
         FileName : "TEST",
-        FileType : "test.test",
+        FileType : "text",
         FileSize : "15mb",
         FileFill : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin interdum tincidunt elit, fermentum aliquam diam consectetur sed. Integer cursus pellentesque ligula quis tempor. Morbi pharetra lacus in condimentum rutrum. Nam molestie, nulla sed hendrerit volutpat, lectus eros vulputate neque, ac congue lacus tellus nec libero. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur laoreet lacinia erat, sed feugiat justo tincidunt a. Donec molestie dictum libero in auctor. Maecenas accumsan et massa ac porta.",
         FileSrc  : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/JvNtJhwkGc8.jpg"
@@ -11,7 +11,7 @@ const testState = [
     {
         FileId : "12",
         FileName : "ABBA",
-        FileType : "biography.pdf",
+        FileType : "pdf",
         FileSize : "24mb",
         FileFill : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin interdum tincidunt elit, fermentum aliquam diam consectetur sed. Integer cursus pellentesque ligula quis tempor. Morbi pharetra lacus in condimentum rutrum. Nam molestie, nulla sed hendrerit volutpat, lectus eros vulputate neque, ac congue lacus tellus nec libero. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur laoreet lacinia erat, sed feugiat justo tincidunt a. Donec molestie dictum libero in auctor. Maecenas accumsan et massa ac porta.",
         FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/14_7840_oboi_standartnye_oboi_windows_xp_1366x768%20(1).jpg"

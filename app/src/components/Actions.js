@@ -9,6 +9,10 @@ export default class Actions extends Component{
         };
     }
 
+    _download(){
+        this.state.router.replace(this.props.src);
+    }
+
     _delete(){
         console.log(this.props.id)
         console.log(deleteFile(this.props.id.toString()));
@@ -24,19 +28,16 @@ export default class Actions extends Component{
     }
 
     render(){
-        let { src } = this.props;
-
-
 
         return <div className="actions">
             {this.props.selected
                 ?
                 <div className={"actions"}>
                     <div className="action">
-                        <a href={src} >Download</a><i>  </i>
+                        <button onClick={this._download.bind(this)} >Download</button><i>  </i>
                     </div>
                     <div className="action">
-                        <a href={src} className={"popup-link"}>Preview</a>
+                        <button onClick={this._preview.bind(this)} className={"popup-link"}>Preview</button>
                     </div>
                     <div className="action">
                         <button onClick={this._delete.bind(this)} className={"btn"}>Delete</button>

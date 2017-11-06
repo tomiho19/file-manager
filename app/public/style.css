@@ -1,5 +1,5 @@
 .table-files tr:hover{
-    background: #7d4f3f;
+    background: #407d0e;
 }
 .main{
     margin: 0 auto;
@@ -14,9 +14,18 @@
     display: inline;
     padding: 0 20px;
 }
-
+.buttons ul,ul li:first-child{
+    padding: 0;
+}
 .buttons_item a:checked{
     text-decoration: none;
     color:white;
 }
+.table-files th,td{
+    padding: 0 10px;
+}
+.actions .action{
 
+    display: inline;
+    padding:10px 5px ;
+}
