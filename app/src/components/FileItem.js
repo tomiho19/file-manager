@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class FileItem extends Component{
 
     selectItem(){
-        this.props._update(this.props.id,this.props.name,this.props.src);
+        this.props._update(this.props.id,this.props.name, this.props.src);
     }
 
     render(){

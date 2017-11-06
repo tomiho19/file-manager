@@ -12,7 +12,7 @@ import headers from "../assets/headers"
 class Files extends Component{
 
     constructor(props){
-        console.log("LOL",props.files)
+
         super(props);
         this.state = {
             data : this.props.files,
@@ -24,7 +24,7 @@ class Files extends Component{
             currentFileName: "",
             currentFileSrc: ""
         };
-        console.log("State:",this.state)
+
     }
     componentWillReceiveProps(nextProps){
         this.setState({
@@ -86,7 +86,7 @@ class Files extends Component{
             currentFileId : id,
             currentFileName: name,
             currentFileSrc : src,
-            selected : true
+            selected : !this.state.selected
         });
     }
 
@@ -118,6 +118,7 @@ class Files extends Component{
                                     name = {el.FileName}
                                     type = {el.FileType}
                                     size = {el.FileSize}
+                                    src  = {el.FileSrc}
                                  _update = {this._update.bind(this)}
                                 />
                             )
@@ -129,6 +130,9 @@ class Files extends Component{
                 <Actions selected={this.state.selected}
                          router = {this.props.router}
                          src ={this.state.currentFileSrc}
+                         name = {this.state.currentFileName}
+                         id={this.state.currentFileId}
+                         update = {this._update.bind(this)}
                          dispatch = {this.props.dispatch}
                 />
                 <Search methodForSearch = {this._search.bind(this)}/>

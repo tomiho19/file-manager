@@ -1,5 +1,6 @@
 .table-files tr:hover{
     background: #407d0e;
+    cursor: pointer;
 }
 .main{
     margin: 0 auto;

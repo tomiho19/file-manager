@@ -28,7 +28,7 @@ export default class App extends Component{
                    <Route path={"/Upload"} component={Upload}/>
                    <Route path={"/fromPC"} component={UploadFromPC}/>
                    <Route path={"/fromFB"} component={UploadFromFb}/>
-                   <Route path={"/Create"} component={Create}/>
+                   <Route path={"/Create"} component={Edit}/>
                    <Route path={"/download/:id"} component={Download}/>
                    <Route path={"/preview/:id"} component={Preview}/>
                    <Route path={"/bookmarks/:id"} component={Bookmarks}/>

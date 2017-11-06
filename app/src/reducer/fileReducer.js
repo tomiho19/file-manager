@@ -2,35 +2,65 @@ import CONSTANTS from '../constants/AppConstants'
 const testState = [
     {
         FileId : "11",
-        FileName : "TEST",
-        FileType : "text",
-        FileSize : "15mb",
-        FileFill : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin interdum tincidunt elit, fermentum aliquam diam consectetur sed. Integer cursus pellentesque ligula quis tempor. Morbi pharetra lacus in condimentum rutrum. Nam molestie, nulla sed hendrerit volutpat, lectus eros vulputate neque, ac congue lacus tellus nec libero. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur laoreet lacinia erat, sed feugiat justo tincidunt a. Donec molestie dictum libero in auctor. Maecenas accumsan et massa ac porta.",
-        FileSrc  : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/JvNtJhwkGc8.jpg"
+        FileName : "index",
+        FileType : "html",
+        FileSize : "15",
+        // language=HTML
+        FileFill : `
+            <!DOCTYPE/>
+            <html>
+        <head>
+            <title>file-manager</title>
+        </head>
+        <body>
+        <div>
+            <p>Hello</p>
+            <h1>Hello</h1>
+            <img width="200px" height="100px" src="http://www.petsworld.in/blog/wp-content/uploads/2014/09/adorable-cat.jpg" alt="cat">
+        </div>
+        </body>
+        </html>
+                    `,
+        FileSrc  : "http://www.petsworld.in/blog/wp-content/uploads/2014/09/adorable-cat.jpg"
     },
     {
         FileId : "12",
-        FileName : "ABBA",
-        FileType : "pdf",
-        FileSize : "24mb",
+        FileName : "simpleText",
+        FileType : "txt",
+        FileSize : "24",
         FileFill : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin interdum tincidunt elit, fermentum aliquam diam consectetur sed. Integer cursus pellentesque ligula quis tempor. Morbi pharetra lacus in condimentum rutrum. Nam molestie, nulla sed hendrerit volutpat, lectus eros vulputate neque, ac congue lacus tellus nec libero. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur laoreet lacinia erat, sed feugiat justo tincidunt a. Donec molestie dictum libero in auctor. Maecenas accumsan et massa ac porta.",
-        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/14_7840_oboi_standartnye_oboi_windows_xp_1366x768%20(1).jpg"
+        FileSrc : " "
     },
     {
         FileId : "13",
-        FileName : "AC/DC",
-        FileType : "mp3",
-        FileSize : "56mb",
-        FileFill : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin interdum tincidunt elit, fermentum aliquam diam consectetur sed. Integer cursus pellentesque ligula quis tempor. Morbi pharetra lacus in condimentum rutrum. Nam molestie, nulla sed hendrerit volutpat, lectus eros vulputate neque, ac congue lacus tellus nec libero. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur laoreet lacinia erat, sed feugiat justo tincidunt a. Donec molestie dictum libero in auctor. Maecenas accumsan et massa ac porta.",
-        FileSrc : "file:///home/g1orynce1g/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/WupftUwtlyY%20(1).jpg",
+        FileName : "cat",
+        FileType : "jpg",
+        FileSize : "220",
+        FileFill : "",
+        FileSrc : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSusOkTrDPeKP9k-JosqYy5I1gxoDvfdWRDoZ8-9sBAZrdKSE7e"
     }
 ];
-const fileReducer = (state = testState, action) => {
+
+const _updateLocalStorage = (state)=>{
+    state = JSON.stringify(state);
+    localStorage.setItem("state",state);
+};
+let data = testState;
+
+    if(!localStorage.getItem("state")){
+        data =  JSON.stringify(data);
+        localStorage.setItem("state", data);
+    }else{
+        data = localStorage.getItem("state");
+    }
+data = JSON.parse(data);
+
+const fileReducer = (state = data, action) => {
     switch (action.type){
         case CONSTANTS.EDIT_FILE:
             let editedFile = state.find(el=>el.FileId === action.id);
-            editedFile.FileName = action.name;
             editedFile.FileFill = action.text;
+            _updateLocalStorage(state);
             return state;
 
         case CONSTANTS.UPLOAD_NEW_FILE:
@@ -52,9 +82,12 @@ const fileReducer = (state = testState, action) => {
                 FileSize : action.size,
                 FileSrc  : "/"
             });
+            _updateLocalStorage(data);
             return data;
         case CONSTANTS.DELETE_FILE:
-            return state.slice().filter(el=>el.FileId !== action.id);
+            let filteredState = state.slice().filter(el=>el.FileId !== action.id);
+            _updateLocalStorage(filteredState)
+            return filteredState;
         default:
             return state
     }

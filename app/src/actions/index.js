@@ -20,11 +20,10 @@ export const uploadNewFile = (name, ftype, size, src, way) => {
         way
     }
 };
-export const editFile = (id, name, text) => {
+export const editFile = (id, text) => {
     return {
         type: CONSTANTS.EDIT_FILE,
         id,
-        name,
         text
     }
 };

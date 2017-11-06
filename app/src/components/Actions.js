@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {deleteFile} from '../actions/index'
+
 export default class Actions extends Component{
 
     constructor(props){
@@ -9,22 +10,22 @@ export default class Actions extends Component{
         };
     }
 
-    _download(){
-        this.state.router.replace(this.props.src);
-    }
-
     _delete(){
-        console.log(this.props.id)
-        console.log(deleteFile(this.props.id.toString()));
+        this.props.update();
         this.props.dispatch(deleteFile(this.props.id.toString()))
     }
 
     _bookmark(){
+
         this.state.router.replace(`/bookmarks/${this.props.id}`);
     }
 
     _edit(){
         this.state.router.replace(`edit/${this.props.id}`);
+    }
+
+    _preview(){
+        document.location.href = this.props.src;
     }
 
     render(){
@@ -34,10 +35,10 @@ export default class Actions extends Component{
                 ?
                 <div className={"actions"}>
                     <div className="action">
-                        <button onClick={this._download.bind(this)} >Download</button><i>  </i>
+                        <a href={this.props.src} download>Download</a><i>  </i>
                     </div>
                     <div className="action">
-                        <button onClick={this._preview.bind(this)} className={"popup-link"}>Preview</button>
+                        <button onClick={this._preview.bind(this)} >Preview</button>
                     </div>
                     <div className="action">
                         <button onClick={this._delete.bind(this)} className={"btn"}>Delete</button>
@@ -52,7 +53,6 @@ export default class Actions extends Component{
                 </div>
                 : <p>Select file at the left side by clicking on it </p>}
         </div>
-
     }
 }
 

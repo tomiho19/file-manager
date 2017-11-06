@@ -1,5 +1,5 @@
 export default [
     "File Name",
     "File Type",
-    "File Size",
+    "File Size ( kb )",
 ]

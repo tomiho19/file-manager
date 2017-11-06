@@ -5,10 +5,10 @@
   "dependencies": {
     "fine-uploader": "^5.14.2",
     "fine-uploader-wrappers": "^1.0.1",
-    "jquery": "^3.2.1",
     "keymirror": "^0.1.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-ckeditor-component": "^1.0.7",
     "react-dom": "^16.0.0",
     "react-fine-uploader": "^1.0.7",
     "react-redux": "^5.0.6",
