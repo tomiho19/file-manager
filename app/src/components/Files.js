@@ -12,6 +12,7 @@ import headers from "../assets/headers"
 class Files extends Component{
 
     constructor(props){
+        console.log("LOL",props.files)
         super(props);
         this.state = {
             data : this.props.files,
@@ -23,8 +24,13 @@ class Files extends Component{
             currentFileName: "",
             currentFileSrc: ""
         };
+        console.log("State:",this.state)
     }
-
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            data : nextProps.files
+        })
+    }
     _sort(e){
         let column = e.target.cellIndex.toString();
         let  sortedData = this.state.data.slice();
@@ -104,6 +110,7 @@ class Files extends Component{
                     </thead>
                     <tbody>
                     {
+
                         this.state.data.map((el,index) => {
                             return (
                                 <FileItem key={index}
@@ -111,7 +118,6 @@ class Files extends Component{
                                     name = {el.FileName}
                                     type = {el.FileType}
                                     size = {el.FileSize}
-                                    src  = {el.FileSrc}
                                  _update = {this._update.bind(this)}
                                 />
                             )
@@ -125,6 +131,7 @@ class Files extends Component{
                          router = {this.props.router}
                          name = {this.state.currentFileName}
                          src ={this.state.currentFileSrc}
+                         dispatch = {this.props.dispatch}
                 />
                 <Search methodForSearch = {this._search.bind(this)}/>
             </div>

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import bookmarksReducer from './bookmarksReducer'
+import bookmarkReducer from './bookmarksReducer'
 import fileReducer from './fileReducer'
 
 const managerReducer = combineReducers({
-    bookmarksReducer,
+    bookmarkReducer,
     fileReducer
 });
 

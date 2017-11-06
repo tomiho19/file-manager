@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import {deleteFile} from '../actions/index'
 export default class Actions extends Component{
 
     constructor(props){
@@ -9,7 +9,11 @@ export default class Actions extends Component{
         };
     }
 
-
+    _delete(){
+        console.log(this.props.id)
+        console.log(deleteFile(this.props.id.toString()));
+        this.props.dispatch(deleteFile(this.props.id.toString()))
+    }
 
     _bookmark(){
         this.state.router.replace(`/bookmarks/${this.props.id}`);
@@ -22,19 +26,20 @@ export default class Actions extends Component{
     render(){
         let { src } = this.props;
 
-        let downloadName = src.toString().split('\/');
-        let index = downloadName.length - 1;
-        let name = downloadName[index];
+
 
         return <div className="actions">
             {this.props.selected
                 ?
                 <div className={"actions"}>
                     <div className="action">
-                        <a href={src} download={name}>Download</a><i>  </i>
+                        <a href={src} >Download</a><i>  </i>
                     </div>
                     <div className="action">
                         <a href={src} className={"popup-link"}>Preview</a>
+                    </div>
+                    <div className="action">
+                        <button onClick={this._delete.bind(this)} className={"btn"}>Delete</button>
                     </div>
                     <div className="action">
                         <button className={"btn btn-download"} onClick={this._bookmark.bind(this)}>Bookmark</button><i> </i>

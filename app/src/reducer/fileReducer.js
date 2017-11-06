@@ -33,23 +33,28 @@ const fileReducer = (state = testState, action) => {
             editedFile.FileFill = action.text;
             return state;
 
-        case CONSTANTS.UPLOAD_NEW_FILE: return state.push({
-            FileId : action.FileId,
-            FileName : action.FileName,
-            FileType : action.FileType,
-            FileSize : action.FileSize,
-            FileSrc : action.FileSrc
-        });
-        case CONSTANTS.CREATE_NEW_FILE: return state.push({
-            FileId : action.FileId,
-            FileName : action.FileName,
-            FileType : action.FileType,
-            FileSize : action.FileSize,
-            FileHref : action.FileHref
-        });
-        case CONSTANTS.DELETE_FILE: return state.filter(el=>{
-            return el.FileId !== action.FileId
-        });
+        case CONSTANTS.UPLOAD_NEW_FILE:
+            return state.push({
+                FileId : action.FileId,
+                FileName : action.FileName,
+                FileType : action.FileType,
+                FileSize : action.FileSize,
+                FileSrc : action.FileSrc
+            });
+
+        case CONSTANTS.CREATE_NEW_FILE:
+            let data = state.slice();
+            data.push({
+                FileId   : action.id,
+                FileName : action.name,
+                FileFill : action.text,
+                FileType : action.ftype,
+                FileSize : action.size,
+                FileSrc  : "/"
+            });
+            return data;
+        case CONSTANTS.DELETE_FILE:
+            return state.slice().filter(el=>el.FileId !== action.id);
         default:
             return state
     }

@@ -3,6 +3,7 @@ import Create from './Create'
 
 export default class Edit extends Component{
     render(){
-        return <Create id={this.props.params.id}/>
+        console.log("ROOT PARAMS:",this.props);
+        return <Create id={this.props.params.id} router={this.props.router}/>
     }
 }

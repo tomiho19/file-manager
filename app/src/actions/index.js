@@ -1,12 +1,13 @@
 import CONSTANTS from "../constants/AppConstants"
 
-export const createNewFile = (name, ftype, size, src) => {
+export const createNewFile = (id, name, text, ftype, size ) => {
     return {
-        type: CONSTANTS.CONNECTED_NEW_USER,
+        type: CONSTANTS.CREATE_NEW_FILE,
+        id,
         name,
+        text,
         ftype,
         size,
-        src,
     }
 };
 export const uploadNewFile = (name, ftype, size, src, way) => {
@@ -27,10 +28,10 @@ export const editFile = (id, name, text) => {
         text
     }
 };
-export const deleteFile = ({ id }) => {
+export const deleteFile = (id) => {
     return {
         type: CONSTANTS.DELETE_FILE,
-        id : id
+        id
     }
-}
+};
 
