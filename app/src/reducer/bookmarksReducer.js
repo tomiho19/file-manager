@@ -1,21 +1,24 @@
 import CONSTANTS from '../constants/AppConstants'
+
 const bookmarks = [
     {
         BookmarkId : "11",
         BookmarkName : "index",
         BookmarkSrc  : "http://www.petsworld.in/blog/wp-content/uploads/2014/09/adorable-cat.jpg"
     }
-
 ];
 
 
-const _updateLocalStorage = (state)=>{
+const _updateLocalStorage = state => {//Функция для обновления localStorage ,вызывается после каждого события которое связано с изменением state
+
     state = JSON.stringify(state);
     localStorage.setItem("bookmarks",state);
+
 };
+
 let data = bookmarks;
 
-if(!localStorage.getItem("bookmarks")){
+if(!localStorage.getItem("bookmarks")){//Если в localStorage нет item-a, тогда создаем его и заливаем туда массив
     data =  JSON.stringify(data);
     localStorage.setItem("bookmarks", data);
 }else{
@@ -26,6 +29,7 @@ data = JSON.parse(data);
 
 const bookmarkReducer = (state = data, action) => {
     switch (action.type){
+
         case CONSTANTS.CREATE_BOOKMARK:
             let data = state.slice();
             data.push({

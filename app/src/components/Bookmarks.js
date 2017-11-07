@@ -1,33 +1,43 @@
-import React ,{Component} from 'react'
-import {connect} from 'react-redux'
+import React , { Component } from 'react'
+import { connect } from 'react-redux'
 import Bookmark from "./Bookmark";
 import Search from './Search'
+
+
 class Bookmarks extends Component{
+
     constructor(props){
+
         super(props);
+
         this.state = {
             data: this.props.bookmarks,
-            _preSearchData : this.props.bookmarks,
-            sortby : null,
-            descending : false,
+            _preSearchData : this.props.bookmarks,  //Копия данных
+            sortby : null,      //Номер столбца сортировки
+            descending : false, //Порядок сортировки (возрастанию или убыванию)
         }
+
     }
 
     _sort(){
+
 
         let  sortedData = this.state.data.slice();
         let descending = this.state.descending;
 
         sortedData.sort((a,b)=>{
+
            return descending
                ? a.BookmarkName > b.BookmarkName ? 1 : -1
                : a.BookmarkName < b.BookmarkName ? 1 : -1
+
         });
 
         this.setState({
             data : sortedData,
             descending: !descending
         });
+
     }
 
     _search(e){
@@ -35,7 +45,7 @@ class Bookmarks extends Component{
         let searchValue = e.target.value.toLowerCase();
         let data = this.state.data.slice();
 
-        if(!searchValue){
+        if(!searchValue){   //Если поле поиска очищено тогда возвращаем состояние до поиска
             this.setState({
                 data : this.state._preSearchData
             });
@@ -43,11 +53,11 @@ class Bookmarks extends Component{
         }
 
         let searchData = data.filter(el=>{
-            return el.BookmarkName.toLowerCase().indexOf(searchValue) !== -1;
+            return el.BookmarkName.toLowerCase().indexOf(searchValue) !== -1; //Поиск элемента по имени
         });
 
         this.setState({
-            data : searchData
+            data : searchData // Обновление state соответствующим элементом
         })
 
     }
@@ -80,8 +90,6 @@ class Bookmarks extends Component{
                 <div className="col-md-3">
                     <Search methodForSearch = {this._search.bind(this)}/>
                 </div>
-
-
             </div>
         )
     }

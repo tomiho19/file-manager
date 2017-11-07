@@ -1,5 +1,5 @@
 import React ,{Component} from 'react'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import { Router, Route, hashHistory } from 'react-router'
 
 import Bookmarks from "./Bookmarks"
@@ -12,7 +12,6 @@ import UploadFromFb from "./UploadFromFB"
 
 import store from "../store/store"
 
-window.store = store;
 
 export default class App extends Component{
     render(){

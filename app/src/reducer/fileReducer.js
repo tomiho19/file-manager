@@ -1,4 +1,5 @@
 import CONSTANTS from '../constants/AppConstants'
+
 const files = [
     {
         FileId : "11",
@@ -41,22 +42,27 @@ const files = [
     }
 ];
 
-const _updateLocalStorage = (state)=>{
+const _updateLocalStorage = (state)=>{ //Функция для обновления localStorage ,вызывается после каждого события которое связано с изменением state
+
     state = JSON.stringify(state);
     localStorage.setItem("files",state);
+
 };
+
 let data = files;
 
-    if(!localStorage.getItem("files")){
+    if(!localStorage.getItem("files")){//Если в localStorage нет item-a, тогда создаем его и заливаем туда массив
         data =  JSON.stringify(data);
         localStorage.setItem("files", data);
     }else{
         data = localStorage.getItem("files");
     }
+
 data = JSON.parse(data);
 
 const fileReducer = (state = data, action) => {
     switch (action.type){
+
         case CONSTANTS.EDIT_FILE:
             let editedFile = state.find(el=>el.FileId.toString() === action.id);
             editedFile.FileFill = action.text;
@@ -84,10 +90,12 @@ const fileReducer = (state = data, action) => {
             });
             _updateLocalStorage(data);
             return data;
+
         case CONSTANTS.DELETE_FILE:
             let filteredState = state.slice().filter(el=>el.FileId.toString() !== action.id);
             _updateLocalStorage(filteredState);
             return filteredState;
+
         default:
             return state
     }

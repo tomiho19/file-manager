@@ -1,7 +1,8 @@
-import React ,{Component} from 'react'
-import {Link} from 'react-router'
-import $ from 'jquery'
-import {Modal, Button} from 'react-bootstrap'
+import React , { Component } from 'react'
+import { Link } from 'react-router'
+import { Modal } from 'react-bootstrap'
+
+
 export default class Root extends Component{
 
     constructor(props){
@@ -14,7 +15,6 @@ export default class Root extends Component{
 
 
     render(){
-        console.log(this.state.confirmed)
         return(
             <main className="container">
                         {this.props.children}

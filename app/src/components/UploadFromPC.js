@@ -5,6 +5,7 @@ import Gallery from 'react-fine-uploader'
 import 'react-fine-uploader/gallery/gallery.css'
 
 const uploader = new FineUploaderTraditional({
+
     options: {
         chunking: {
             enabled: true
@@ -20,20 +21,21 @@ const uploader = new FineUploaderTraditional({
             enableAuto: true
         }
     }
+
 });
 
 export default class UploadFromPC extends Component {
+
     constructor(props){
+
         super(props);
+
         this.state = {
             submittedFiles : []
         };
 
     }
 
-    componentWillReceiveProps(nextProps){
-        console.log("PROPS:",nextProps);
-    }
     render() {
         return (
             <div className="row">

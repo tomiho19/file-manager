@@ -17,24 +17,27 @@ class Files extends Component{
         this.state = {
             data : this.props.files,
             _preSearchData : this.props.files,
-            sortby : null,
-            descending : false,
-            selected : false,
-            currentFileId : null,
-            currentFileName: "",
-            currentFileSrc: ""
+            sortby : null, //Номер столбца сортировки
+            descending : false, //Порядок сортировки (возрастанию или убыванию)
+            selected : false, //Выбран какой-то файл или нет
+            currentFileId : null, //ID текущего выбраного элемента
+            currentFileName: "",  //Name текущего выбраного элемента
+            currentFileSrc: ""    //Src текущего выбраного элемента
         };
 
     }
+
     componentWillReceiveProps(nextProps){
         this.setState({
             data : nextProps.files
         })
     }
+
     _sort(e){
-        let column = e.target.cellIndex.toString();
+
+        let column = e.target.cellIndex.toString(); //Номер столбца сортировки
         let  sortedData = this.state.data.slice();
-        let descending = this.state.sortby === column && !this.state.descending;
+        let descending = this.state.sortby === column && !this.state.descending;//По умолчанию сортировка будет выполняться по возрастанию, если только индекс нового столбца не будет таким же, как и индекс столбца, по которому уже была произведена сортировка, и если эта сортировка не была выполнена в порядке убывания
 
         sortedData.sort((a,b)=>{
             switch (column){
@@ -58,13 +61,15 @@ class Files extends Component{
             sortby: column,
             descending: descending
         });
+
     }
 
     _search(e){
+
         let searchValue = e.target.value.toLowerCase();
         let data = this.state.data.slice();
 
-        if(!searchValue){
+        if(!searchValue){                  //Если поле поиска очищено тогда возвращаем состояние до поиска
             this.setState({
                 data : this.state._preSearchData
             });
@@ -72,22 +77,24 @@ class Files extends Component{
         }
 
         let searchData = data.filter(el=>{
-            return el.FileName.toLowerCase().indexOf(searchValue) !== -1;
+            return el.FileName.toLowerCase().indexOf(searchValue) !== -1; //Поиск элемента по имени
         });
 
         this.setState({
-            data : searchData
+            data : searchData // Отображение state соответствующим элементом
         })
 
     }
 
-    _update(id,name,src){
+    _update(id, name, src){
+
         this.setState({
             currentFileId : id,
             currentFileName: name,
             currentFileSrc : src,
             selected : !this.state.selected
         });
+
     }
 
 
@@ -111,7 +118,6 @@ class Files extends Component{
                         </thead>
                         <tbody>
                         {
-
                             this.state.data.map((el,index) => {
                                 return (
                                     <FileItem key={index}

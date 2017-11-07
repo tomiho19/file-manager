@@ -1,27 +1,33 @@
-import React ,{Component} from 'react'
-import {connect} from 'react-redux'
-import {editFile, createNewFile} from '../actions/index'
+import React , { Component } from 'react'
+import { connect } from 'react-redux'
+import { editFile, createNewFile } from '../actions/index'
 import CKEditor from 'react-ckeditor-component'
 
+
 class Edit extends Component{
+
     constructor(props){
+
         super(props);
+
         this.updateContent = this.updateContent.bind(this);
+
         this.state = {
             data : this.props.files,
             id   : this.props.params.id,
-            content : null,
-
+            content : null
         }
+
     }
 
     componentDidMount(){
-        if(this.state.id){
-            console.log(this.state);
+
+        if(this.state.id){   //Если это редактирование,тоесть в URL http://localhost:3000/#/edit/11 , есть id (11)
+
             let data = this.state.data;
-            let item = data.find(el=>el.FileId.toString() === this.state.id);
-            let content = this._setContent(item);
-            console.log(item)
+            let item = data.find(el=>el.FileId.toString() === this.state.id); //Поиск элемента по id
+            let content = this._setContent(item);   //Вставка данных о элементе в редактор
+
             this.setState({
                 content:content
             })
@@ -31,54 +37,60 @@ class Edit extends Component{
     }
 
     updateContent(newContent) {
+
         this.setState({
             data: newContent
         })
+
     }
 
-    onChange(evt){
-        console.log("onChange fired with event info: ", evt);
-        let newContent = evt.editor.getData();
+    onChange(e){
+
+        let newContent = e.editor.getData();
         this.setState({
             data: newContent
         })
-    }
-
-    onBlur(evt){
-        //console.log("onBlur event called with event info: ", evt);
-        this._save(evt.editor._.data);
 
     }
 
-    afterPaste(evt){
-        //console.log("afterPaste event called with event info: ", evt);
+    onBlur(e){
+        this._save(e.editor._.data);
+    }
+
+    afterPaste(e){
+        console.log("afterPaste event called with event info: ", e);
     }
 
     _setContent(item){
+
         switch (item.FileType){
             case "jpg" : return `<img src=${item.FileSrc} ></img>`;
             default: return item.FileFill
         }
+
     }
 
 
 
     _save(text){
+
         let id = this.state.id;
+
         if(id){
             this.props.dispatch(editFile(id, text));
         }else{
-            this.setState({
-                saved : !this.state.saved
-            });
+
             let id = Date.now();
             let name = "new";
             let type = "txt";
             let size = 1;
+
             this.props.dispatch(createNewFile(id, name, text, type, size));
+
         }
+
         this.props.router.replace("/Files");
-        //console.log("STATE ON SAVE:",this.state);
+
     }
 
     render() {
