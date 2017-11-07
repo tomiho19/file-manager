@@ -2,14 +2,13 @@ import React ,{Component} from 'react'
 import { Provider } from 'react-redux'
 import { Router, Route, hashHistory } from 'react-router'
 
-import Bookmarks from "./Bookmarks"
-import Files from "./Files"
+import Bookmarks from "../containers/Bookmarks"
+import Files from "../containers/Files"
 import Upload from "./Upload"
 import Root from "./Root"
-import Edit from "./Edit"
+import Edit from "../containers/Edit"
 import UploadFromPC from "./UploadFromPC"
 import UploadFromFb from "./UploadFromFB"
-
 import store from "../store/store"
 
 
@@ -33,4 +32,3 @@ export default class App extends Component{
        );
    }
 }
-

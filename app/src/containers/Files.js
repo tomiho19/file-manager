@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import Search from './Search'
-import FileItem from './FileItem'
+import Search from '../components/Search'
+import FileItem from '../components/FileItem'
 import Actions from './Actions'
 
 import { connect } from 'react-redux'
 import headers from "../assets/headers"
-
+import PropTypes from 'prop-types'
 
 
 class Files extends Component{
@@ -151,6 +151,11 @@ class Files extends Component{
     }
 }
 
+Files.propTypes = {
+    files    : PropTypes.array.isRequired,
+    router   : PropTypes.object.isRequired,
+    dispatch : PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state)=>{
     return{

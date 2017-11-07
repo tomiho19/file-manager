@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { deleteFile, deleteBookmark, createBookmark } from '../actions/index'
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap'
 import ReactGA from 'react-ga'
-
+import PropTypes from 'prop-types'
 
 export default class Actions extends Component{
 
@@ -147,3 +147,12 @@ export default class Actions extends Component{
     }
 }
 
+Actions.propTypes = {
+    router   : PropTypes.object.isRequired,
+    dispatch : PropTypes.func.isRequired,
+    update   : PropTypes.func.isRequired,
+    id       : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    src      : PropTypes.string,
+    name     : PropTypes.string,
+    selected : PropTypes.bool.isRequired
+};

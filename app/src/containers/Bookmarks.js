@@ -1,8 +1,8 @@
 import React , { Component } from 'react'
 import { connect } from 'react-redux'
-import Bookmark from "./Bookmark";
-import Search from './Search'
-
+import Bookmark from "../components/Bookmark";
+import Search from '../components/Search';
+import PropTypes from 'prop-types';
 
 class Bookmarks extends Component{
 
@@ -94,6 +94,10 @@ class Bookmarks extends Component{
         )
     }
 }
+
+Bookmarks.propTypes = {
+    bookmarks   : PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state)=>{
     return{

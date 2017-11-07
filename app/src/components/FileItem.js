@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class FileItem extends Component{
 
@@ -18,3 +19,10 @@ export default class FileItem extends Component{
         )
     }
 }
+
+FileItem.propTypes = {
+    id   : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    name : PropTypes.string.isRequired,
+    src  : PropTypes.string,
+    type : PropTypes.string.isRequired
+};

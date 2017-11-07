@@ -2,7 +2,7 @@ import React , { Component } from 'react'
 import { connect } from 'react-redux'
 import { editFile, createNewFile } from '../actions/index'
 import CKEditor from 'react-ckeditor-component'
-
+import PropTypes from 'prop-types'
 
 class Edit extends Component{
 
@@ -112,6 +112,12 @@ class Edit extends Component{
     }
 }
 
+Edit.propTypes = {
+    files    : PropTypes.array.isRequired,
+    id       : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    router   : PropTypes.object.isRequired,
+    dispatch : PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state)=>{
     return{

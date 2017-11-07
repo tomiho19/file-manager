@@ -50,3 +50,15 @@ body td, tr, a:hover{
 .fine-uploader-dropzone-container{
     margin-bottom: 30px;
 }
+
+.well{
+    text-align: center;
+}
+
+.well a,button{
+    margin-bottom:10px;
+}
+
+#btn_delete, #drp_dwn_btn{
+    margin-bottom:10px;
+}

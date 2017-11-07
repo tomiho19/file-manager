@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react'
-
+import PropTypes from 'prop-types'
 export default class Bookmark extends Component{
     render(){
         let {id , src, name } = this.props;
@@ -11,3 +11,9 @@ export default class Bookmark extends Component{
                 </tr>
     }
 }
+
+Bookmark.propTypes = {
+    id   : PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    src  : PropTypes.string.isRequired,
+    name : PropTypes.string.isRequired
+};

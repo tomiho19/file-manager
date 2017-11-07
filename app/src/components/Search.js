@@ -1,4 +1,5 @@
 import React ,{Component} from 'react'
+import PropTypes from 'prop-types'
 
 export default class Search extends Component{
     render(){
@@ -12,3 +13,7 @@ export default class Search extends Component{
         )
     }
 }
+
+Search.propTypes = {
+    methodForSearch : PropTypes.func.isRequired
+};
