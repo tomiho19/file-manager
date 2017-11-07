@@ -40,4 +40,3 @@ export default class UploadFromPC extends Component {
         )
     }
 }
-

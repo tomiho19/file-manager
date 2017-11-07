@@ -1,39 +1,38 @@
-.table-files tr:hover{
-    background: #407d0e;
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body td, tr, a:hover{
     cursor: pointer;
 }
-.main{
-    margin: 0 auto;
-    padding: 0;
-}
-.fine-uploader-dropzone-container , .react-fine-uploader-gallery-dropzone{
-    width: 50%;
+
+/*Кнопки File list, bookmarks etc.*/
+.buttons li{
+    text-decoration: none;
+    list-style-type: none;
+    display: inline;
     margin: 10px;
 }
-.buttons_item{
-    list-style: none;
-    display: inline;
-    padding: 0 20px;
-}
-.buttons ul,ul li:first-child{
-    padding: 0;
-}
-.buttons_item a:checked{
-    text-decoration: none;
-    color:white;
-}
-.table-files th,td{
-    padding: 0 10px;
-}
-.actions .action{
 
-    display: inline;
-    padding:10px 5px ;
+.root{
+    margin: 20px auto;
 }
-.wellStyles {
-    max-width: 50px;
-    margin: 0 auto 10px;
+
+.table__files tr:hover{
+    background-color: #31B0D5;
+    color : white;
+    transition: all ease-out .35s;
 }
-.well{
-    max-width: 140px;
+
+.table__bookmarks a{
+    text-decoration: none;
+    color : #2A1B16;
 }
+
+.table__bookmarks tr:hover{
+    background-color: #EC971F;
+    transition: all ease-out .35s;
+}
+
+

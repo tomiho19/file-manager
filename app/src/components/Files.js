@@ -94,9 +94,10 @@ class Files extends Component{
 
     render(){
         return(
-            <div className="container files-container">
-                <table className="table-files">
-                    <thead onClick={this._sort.bind(this)}>
+            <div className="row">
+                <div className="col-md-7">
+                    <table className="table table__files">
+                        <thead onClick={this._sort.bind(this)}>
                         <tr>
                             {
                                 headers.map((el,index)=>{
@@ -107,26 +108,27 @@ class Files extends Component{
                                 })
                             }
                         </tr>
-                    </thead>
-                    <tbody>
-                    {
+                        </thead>
+                        <tbody>
+                        {
 
-                        this.state.data.map((el,index) => {
-                            return (
-                                <FileItem key={index}
-                                     id  = {el.FileId}
-                                    name = {el.FileName}
-                                    type = {el.FileType}
-                                    size = {el.FileSize}
-                                    src  = {el.FileSrc}
-                                 _update = {this._update.bind(this)}
-                                />
-                            )
-                        })
-                    }
-                    </tbody>
-                </table>
-                {this.props.children}
+                            this.state.data.map((el,index) => {
+                                return (
+                                    <FileItem key={index}
+                                              id  = {el.FileId}
+                                              name = {el.FileName}
+                                              type = {el.FileType}
+                                              size = {el.FileSize}
+                                              src  = {el.FileSrc}
+                                              _update = {this._update.bind(this)}
+                                    />
+                                )
+                            })
+                        }
+                        </tbody>
+                    </table>
+                </div>
+
                 <Actions selected={this.state.selected}
                          router = {this.props.router}
                          src ={this.state.currentFileSrc}
@@ -135,7 +137,9 @@ class Files extends Component{
                          update = {this._update.bind(this)}
                          dispatch = {this.props.dispatch}
                 />
-                <Search methodForSearch = {this._search.bind(this)}/>
+                <div className="col-md-3">
+                    <Search methodForSearch = {this._search.bind(this)}/>
+                </div>
             </div>
         )
     }

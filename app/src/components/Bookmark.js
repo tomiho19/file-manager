@@ -6,7 +6,8 @@ export default class Bookmark extends Component{
         let {id , src, name } = this.props;
         return  <tr key={id} >
                     <td>
-                        <a href={src}>{name}</a>
+                        <i className="fa fa-bookmark" aria-hidden="true"></i>
+                        <a  href={src}>{name}</a>
                     </td>
                 </tr>
     }

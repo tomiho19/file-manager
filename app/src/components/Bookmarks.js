@@ -55,16 +55,17 @@ class Bookmarks extends Component{
 
     render(){
         return(
-            <div className="bookmarks">
-                <table>
-                    <thead>
-                    <tr>
-                        <th onClick={this._sort.bind(this)}>
-                            Bookmarks {this.state.descending ? '\u2191' : '\u2193'}
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
+            <div className="bookmarks row">
+                <div className="col-md-7">
+                    <table className={"table table__bookmarks"}>
+                        <thead>
+                        <tr>
+                            <th onClick={this._sort.bind(this)}>
+                                Bookmarks {this.state.descending ? '\u2191' : '\u2193'}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {this.state.data.map((el,index)=>{
                             return(<Bookmark
                                 key  = {index}
@@ -73,9 +74,13 @@ class Bookmarks extends Component{
                                 src  = {el.BookmarkSrc}
                             />)
                         })}
-                    </tbody>
-                </table>
-                <Search methodForSearch = {this._search.bind(this)}/>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="col-md-3">
+                    <Search methodForSearch = {this._search.bind(this)}/>
+                </div>
+
 
             </div>
         )
