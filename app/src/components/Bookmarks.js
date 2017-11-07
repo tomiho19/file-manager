@@ -1,31 +1,82 @@
 import React ,{Component} from 'react'
 import {connect} from 'react-redux'
 import Bookmark from "./Bookmark";
-
+import Search from './Search'
 class Bookmarks extends Component{
     constructor(props){
         super(props);
         this.state = {
-            data: this.props.bookmarks
+            data: this.props.bookmarks,
+            _preSearchData : this.props.bookmarks,
+            sortby : null,
+            descending : false,
         }
     }
 
-    componentDidMount(){
-        console.log(this.props)
+    _sort(){
+
+        let  sortedData = this.state.data.slice();
+        let descending = this.state.descending;
+
+        sortedData.sort((a,b)=>{
+           return descending
+               ? a.BookmarkName > b.BookmarkName ? 1 : -1
+               : a.BookmarkName < b.BookmarkName ? 1 : -1
+        });
+
+        this.setState({
+            data : sortedData,
+            descending: !descending
+        });
     }
+
+    _search(e){
+
+        let searchValue = e.target.value.toLowerCase();
+        let data = this.state.data.slice();
+
+        if(!searchValue){
+            this.setState({
+                data : this.state._preSearchData
+            });
+            return;
+        }
+
+        let searchData = data.filter(el=>{
+            return el.BookmarkName.toLowerCase().indexOf(searchValue) !== -1;
+        });
+
+        this.setState({
+            data : searchData
+        })
+
+    }
+
+
     render(){
         return(
             <div className="bookmarks">
-                <ul>
-                    {this.state.data.map((el,index)=>{
-                        return(<Bookmark
-                            key  = {index}
-                            id   = {el.BookmarkId}
-                            name = {el.BookmarkName}
-                            src  = {el.BookmarkSrc}
-                        />)
-                    })}
-                </ul>
+                <table>
+                    <thead>
+                    <tr>
+                        <th onClick={this._sort.bind(this)}>
+                            Bookmarks {this.state.descending ? '\u2191' : '\u2193'}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.data.map((el,index)=>{
+                            return(<Bookmark
+                                key  = {index}
+                                id   = {el.BookmarkId}
+                                name = {el.BookmarkName}
+                                src  = {el.BookmarkSrc}
+                            />)
+                        })}
+                    </tbody>
+                </table>
+                <Search methodForSearch = {this._search.bind(this)}/>
+
             </div>
         )
     }

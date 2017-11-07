@@ -22,8 +22,9 @@ class Edit extends Component{
         if(this.state.id){
             console.log(this.state);
             let data = this.state.data;
-            let item = data.find(el=>el.FileId === this.state.id);
+            let item = data.find(el=>el.FileId.toString() === this.state.id);
             let content = this._setContent(item);
+            console.log(item)
             this.setState({
                 content:content
             })
@@ -48,7 +49,6 @@ class Edit extends Component{
 
     onBlur(evt){
         //console.log("onBlur event called with event info: ", evt);
-        console.log("!!!")
         this._save(evt.editor._.data);
 
     }
@@ -64,9 +64,7 @@ class Edit extends Component{
         }
     }
 
-    _cancel(){
-        this.props.router.replace("/Files");
-    }
+
 
     _save(text){
         let id = this.state.id;

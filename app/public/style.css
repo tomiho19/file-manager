@@ -30,3 +30,10 @@
     display: inline;
     padding:10px 5px ;
 }
+.wellStyles {
+    max-width: 50px;
+    margin: 0 auto 10px;
+}
+.well{
+    max-width: 140px;
+}

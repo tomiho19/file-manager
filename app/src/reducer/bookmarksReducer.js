@@ -1,5 +1,5 @@
 import CONSTANTS from '../constants/AppConstants'
-const testState = [
+const bookmarks = [
     {
         BookmarkId : "11",
         BookmarkName : "index",
@@ -7,19 +7,39 @@ const testState = [
     }
 
 ];
-const bookmarkReducer = (state = testState, action) => {
+
+
+const _updateLocalStorage = (state)=>{
+    state = JSON.stringify(state);
+    localStorage.setItem("bookmarks",state);
+};
+let data = bookmarks;
+
+if(!localStorage.getItem("bookmarks")){
+    data =  JSON.stringify(data);
+    localStorage.setItem("bookmarks", data);
+}else{
+    data = localStorage.getItem("bookmarks");
+}
+
+data = JSON.parse(data);
+
+const bookmarkReducer = (state = data, action) => {
     switch (action.type){
-        case CONSTANTS.EDIT_FILE:
-            return state;
+        case CONSTANTS.CREATE_BOOKMARK:
+            let data = state.slice();
+            data.push({
+                BookmarkId:action.id,
+                BookmarkName:action.name,
+                BookmarkSrc:action.src
+            });
+            _updateLocalStorage(data);
+            return data;
 
-        case CONSTANTS.UPLOAD_NEW_FILE:
-            return state;
-
-        case CONSTANTS.CREATE_NEW_FILE:
-            return state;
-
-        case CONSTANTS.DELETE_FILE:
-            return state;
+        case CONSTANTS.DELETE_BOOKMARK:
+            let filteredState = state.slice().filter(el=>el.BookmarkId !== action.id);
+            _updateLocalStorage(filteredState);
+            return filteredState;
 
         default:
             return state

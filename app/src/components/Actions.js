@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {deleteFile} from '../actions/index'
+import {deleteFile, deleteBookmark, createBookmark} from '../actions/index'
+import {ButtonToolbar, Button, DropdownButton, MenuItem} from 'react-bootstrap'
 
 export default class Actions extends Component{
 
@@ -11,13 +12,21 @@ export default class Actions extends Component{
     }
 
     _delete(){
+        this.props.dispatch(deleteFile(this.props.id.toString()));
         this.props.update();
-        this.props.dispatch(deleteFile(this.props.id.toString()))
+        this.state.router.replace("/Files")
     }
 
-    _bookmark(){
+    _bookmarkAdd(){
+        let { id, name, src, dispatch } = this.props;
+        dispatch(createBookmark(id,name,src));
+        this.state.router.replace(`/bookmarks/${id}`);
+    }
 
-        this.state.router.replace(`/bookmarks/${this.props.id}`);
+    _bookmarkDelete(){
+        let { id, dispatch } = this.props;
+        dispatch(deleteBookmark(id));
+        this.state.router.replace(`/bookmarks/${id}`);
     }
 
     _edit(){
@@ -33,23 +42,27 @@ export default class Actions extends Component{
         return <div className="actions">
             {this.props.selected
                 ?
-                <div className={"actions"}>
-                    <div className="action">
-                        <a href={this.props.src} download>Download</a><i>  </i>
-                    </div>
-                    <div className="action">
-                        <button onClick={this._preview.bind(this)} >Preview</button>
-                    </div>
-                    <div className="action">
-                        <button onClick={this._delete.bind(this)} className={"btn"}>Delete</button>
-                    </div>
-                    <div className="action">
-                        <button className={"btn btn-download"} onClick={this._bookmark.bind(this)}>Bookmark</button><i> </i>
-                    </div>
-                    <div className="action">
-                        <button className={"btn btn-download"} onClick={this._edit.bind(this)}>Edit</button><i> </i>
-                    </div>
+                <div className="well" >
+
+                        <Button id={"btn_download"} bsSize="small" bsStyle="primary" href={this.props.src} download>Download</Button><br/>
+
+
+                        <Button id={"btn_preview"} bsSize="small" bsStyle="success" onClick={this._preview.bind(this)} >Preview</Button><br/>
+
+
+                        <Button id={"btn_delete"} bsSize="small" bsStyle="danger" onClick={this._delete.bind(this)} className={"btn"}>Delete</Button><br/>
+
+
+                        <DropdownButton id={"drp_dwn_btn"} bsSize="small" bsStyle="info" title={"Bookmark"} className={"btn btn-download"} >
+                            <MenuItem className = "drp_dwn_btn-item" eventKey="1" onClick={this._bookmarkAdd.bind(this)}>Add</MenuItem>
+                            <MenuItem className = "drp_dwn_btn-item" eventKey="2" onClick={this._bookmarkDelete.bind(this)}>Delete</MenuItem>
+                        </DropdownButton><br/>
+
+
+                        <Button bsSize="small" id={"btn_edit"} bsStyle="warning" className={"btn btn-edit"} onClick={this._edit.bind(this)}>Edit</Button><br/>
+
                     <p>File selected : {this.props.name}</p>
+
                 </div>
                 : <p>Select file at the left side by clicking on it </p>}
         </div>

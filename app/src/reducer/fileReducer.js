@@ -1,5 +1,5 @@
 import CONSTANTS from '../constants/AppConstants'
-const testState = [
+const files = [
     {
         FileId : "11",
         FileName : "index",
@@ -43,22 +43,22 @@ const testState = [
 
 const _updateLocalStorage = (state)=>{
     state = JSON.stringify(state);
-    localStorage.setItem("state",state);
+    localStorage.setItem("files",state);
 };
-let data = testState;
+let data = files;
 
-    if(!localStorage.getItem("state")){
+    if(!localStorage.getItem("files")){
         data =  JSON.stringify(data);
-        localStorage.setItem("state", data);
+        localStorage.setItem("files", data);
     }else{
-        data = localStorage.getItem("state");
+        data = localStorage.getItem("files");
     }
 data = JSON.parse(data);
 
 const fileReducer = (state = data, action) => {
     switch (action.type){
         case CONSTANTS.EDIT_FILE:
-            let editedFile = state.find(el=>el.FileId === action.id);
+            let editedFile = state.find(el=>el.FileId.toString() === action.id);
             editedFile.FileFill = action.text;
             _updateLocalStorage(state);
             return state;
@@ -85,8 +85,8 @@ const fileReducer = (state = data, action) => {
             _updateLocalStorage(data);
             return data;
         case CONSTANTS.DELETE_FILE:
-            let filteredState = state.slice().filter(el=>el.FileId !== action.id);
-            _updateLocalStorage(filteredState)
+            let filteredState = state.slice().filter(el=>el.FileId.toString() !== action.id);
+            _updateLocalStorage(filteredState);
             return filteredState;
         default:
             return state
