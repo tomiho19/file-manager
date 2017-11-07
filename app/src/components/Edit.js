@@ -1,10 +1,7 @@
 import React ,{Component} from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import {editFile, createNewFile} from '../actions/index'
 import CKEditor from 'react-ckeditor-component'
-
-import Create from './Create'
 
 class Edit extends Component{
     constructor(props){

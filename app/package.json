@@ -7,6 +7,7 @@
     "express": "^4.16.2",
     "fine-uploader": "^5.14.2",
     "fine-uploader-wrappers": "^1.0.1",
+    "font-awesome": "^4.7.0",
     "images-upload-middleware": "^1.1.1",
     "jquery": "^3.2.1",
     "keymirror": "^0.1.1",

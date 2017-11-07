@@ -36,7 +36,11 @@ export default class UploadFromPC extends Component {
     }
     render() {
         return (
-            <Gallery uploader={ uploader } />
+            <div className="row">
+                <div className="col-md-12">
+                    <Gallery uploader={ uploader } />
+                </div>
+            </div>
         )
     }
 }

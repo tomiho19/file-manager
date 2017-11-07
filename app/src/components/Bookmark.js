@@ -7,7 +7,7 @@ export default class Bookmark extends Component{
         return  <tr key={id} >
                     <td>
                         <i className="fa fa-bookmark" aria-hidden="true"></i>
-                        <a  href={src}>{name}</a>
+                        <a className={"bookmark__item"} href={src}>{name}</a>
                     </td>
                 </tr>
     }

@@ -19,7 +19,7 @@ export default class Root extends Component{
             <main className="container">
                         {this.props.children}
                 <div className="row">
-                    <div className="buttons col-md-12 ">
+                    <div className="buttons col-md-8 ">
                         <ul>
                             <li className="buttons_item">
                                 <Link  to={"/Files"} className="btn btn-info">File List </Link>

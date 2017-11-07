@@ -4,11 +4,8 @@ import { Router, Route, hashHistory } from 'react-router'
 
 import Bookmarks from "./Bookmarks"
 import Files from "./Files"
-import Create from "./Create"
 import Upload from "./Upload"
 import Root from "./Root"
-import Download from "./Download"
-import Preview from "./Preview"
 import Edit from "./Edit"
 import UploadFromPC from "./UploadFromPC"
 import UploadFromFb from "./UploadFromFB"
@@ -29,8 +26,6 @@ export default class App extends Component{
                    <Route path={"/fromPC"} component={UploadFromPC}/>
                    <Route path={"/fromFB"} component={UploadFromFb}/>
                    <Route path={"/Create"} component={Edit}/>
-                   <Route path={"/download/:id"} component={Download}/>
-                   <Route path={"/preview/:id"} component={Preview}/>
                    <Route path={"/bookmarks/:id"} component={Bookmarks}/>
                    <Route path={"/edit/:id"} component={Edit}/>
                </Route>

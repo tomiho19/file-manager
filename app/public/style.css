@@ -5,6 +5,7 @@
 
 body td, tr, a:hover{
     cursor: pointer;
+    text-decoration: none;
 }
 
 /*Кнопки File list, bookmarks etc.*/
@@ -27,7 +28,6 @@ body td, tr, a:hover{
 
 .table__bookmarks a{
     text-decoration: none;
-    color : #2A1B16;
 }
 
 .table__bookmarks tr:hover{
@@ -35,4 +35,18 @@ body td, tr, a:hover{
     transition: all ease-out .35s;
 }
 
+.bookmark__item{
+    margin-left: 10px;
+}
 
+.upload-from-PC, .upload-from-FB{
+    text-align: center;
+}
+
+.uploads__PC__FB{
+    margin-bottom:30px;
+}
+
+.fine-uploader-dropzone-container{
+    margin-bottom: 30px;
+}
