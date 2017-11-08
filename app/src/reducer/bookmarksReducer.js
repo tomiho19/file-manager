@@ -8,11 +8,12 @@ const bookmarks = [
     }
 ];
 
+let localStorage = window.localStorage;
 
 const _updateLocalStorage = state => {//Функция для обновления localStorage ,вызывается после каждого события которое связано с изменением state
 
     state = JSON.stringify(state);
-    localStorage.setItem("bookmarks",state);
+    window.localStorage.setItem("bookmarks",state);
 
 };
 

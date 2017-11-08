@@ -1,6 +1,15 @@
+@font-face {
+    font-family: "Decalotype-Black";
+    src: url('./font/Decalotype-104/TTF/Decalotype-Black.ttf')format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
+    font-family: "Decalotype-Black";
+    font-weight: 200;
 }
 
 body td, tr, a:hover{
@@ -62,3 +71,4 @@ body td, tr, a:hover{
 #btn_delete, #drp_dwn_btn{
     margin-bottom:10px;
 }
+

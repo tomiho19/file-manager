@@ -6,7 +6,6 @@
         <entryData>
           <resourceRoots>
             <path value="file://$PROJECT_DIR$" />
-            <path value="file://$PROJECT_DIR$/app/public/font" />
           </resourceRoots>
         </entryData>
       </entry>

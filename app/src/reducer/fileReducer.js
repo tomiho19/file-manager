@@ -50,6 +50,7 @@ const _updateLocalStorage = (state)=>{ //Функция для обновлен�
 };
 
 let data = files;
+let localStorage = window.localStorage;
 
     if(!localStorage.getItem("files")){//Если в localStorage нет item-a, тогда создаем его и заливаем туда массив
         data =  JSON.stringify(data);
