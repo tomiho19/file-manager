@@ -1,7 +1,6 @@
 import React , { Component } from 'react'
 import { Link } from 'react-router'
 import { Modal } from 'react-bootstrap'
-import PropTypes from 'prop-types'
 
 export default class Root extends Component{
 
@@ -12,7 +11,11 @@ export default class Root extends Component{
         }
     }
 
-
+    componentDidMount(){
+        if(!this.props.children){
+            this.props.router.push("/Files");
+        }
+    }
 
     render(){
         return(
@@ -52,8 +55,4 @@ export default class Root extends Component{
             </main>
         )
     }
-};
-
-Root.propTypes = {
-    children : PropTypes.element.isRequired
 };
