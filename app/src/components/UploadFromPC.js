@@ -12,13 +12,13 @@ const uploader = new FineUploaderTraditional({
         },
         deleteFile: {
             enabled: true,
-            endpoint: '/uploads/'
+            endpoint: 'uploads/'
         },
         request: {
-            endpoint: '/uploads/'
+            endpoint: 'uploads/'
         },
         retry: {
-            enableAuto: true
+            enableAuto: false
         }
     }
 
@@ -35,6 +35,9 @@ export default class UploadFromPC extends Component {
         };
 
     }
+
+
+
 
     render() {
         return (

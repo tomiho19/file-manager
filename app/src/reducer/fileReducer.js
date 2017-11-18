@@ -30,14 +30,14 @@ const files = [
         FileType : "txt",
         FileSize : "24",
         FileFill : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin interdum tincidunt elit, fermentum aliquam diam consectetur sed. Integer cursus pellentesque ligula quis tempor. Morbi pharetra lacus in condimentum rutrum. Nam molestie, nulla sed hendrerit volutpat, lectus eros vulputate neque, ac congue lacus tellus nec libero. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur laoreet lacinia erat, sed feugiat justo tincidunt a. Donec molestie dictum libero in auctor. Maecenas accumsan et massa ac porta.",
-        FileSrc : " "
+        FileSrc : false
     },
     {
         FileId : "13",
         FileName : "cat",
         FileType : "jpg",
         FileSize : "220",
-        FileFill : "",
+        FileFill : false,
         FileSrc : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSusOkTrDPeKP9k-JosqYy5I1gxoDvfdWRDoZ8-9sBAZrdKSE7e"
     }
 ];
@@ -72,11 +72,11 @@ const fileReducer = (state = data, action) => {
 
         case CONSTANTS.UPLOAD_NEW_FILE:
             return state.push({
-                FileId : action.FileId,
-                FileName : action.FileName,
-                FileType : action.FileType,
-                FileSize : action.FileSize,
-                FileSrc : action.FileSrc
+                FileId : action.id,
+                FileName : action.name,
+                FileType : action.ftype,
+                FileSize : action.size,
+                FileSrc : action.src
             });
 
         case CONSTANTS.CREATE_NEW_FILE:

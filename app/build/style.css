@@ -12,6 +12,11 @@
     font-weight: 200;
 }
 
+
+body svg .react-fine-uploader-gallery-upload-failed-icon{
+    fill: green;
+}
+
 body td, tr, a:hover{
     cursor: pointer;
     text-decoration: none;

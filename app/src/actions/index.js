@@ -64,3 +64,18 @@ export const deleteFile = (id) => {
     }
 };
 
+export const uploadNewFile = (id, name, src, ftype, size ) => {
+
+    //Событие и время добавления нового файла
+    let time = new Date();
+    window.info.push(`The file have been uploaded! on ${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`);
+
+    return {
+        type: CONSTANTS.CREATE_NEW_FILE,
+        id,
+        name,
+        src,
+        ftype,
+        size,
+    }
+};
