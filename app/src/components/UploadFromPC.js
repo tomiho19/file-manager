@@ -12,7 +12,8 @@ const uploader = new FineUploaderTraditional({
         },
         deleteFile: {
             enabled: true,
-            endpoint: 'uploads/'
+            forceConfirm: true,
+            endpoint: 'deleteFile/'
         },
         request: {
             endpoint: 'uploads/'
@@ -43,9 +44,18 @@ export default class UploadFromPC extends Component {
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <Gallery uploader={ uploader } />
+                    <Gallery
+                        uploader={ uploader }
+                    />
                 </div>
             </div>
         )
     }
 }
+
+const isFileGone = status => {
+    return [
+        'canceled',
+        'deleted',
+    ].indexOf(status) >= 0
+};

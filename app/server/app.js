@@ -7,7 +7,6 @@ const app = express();
 
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
-//app.use("assets", express.static("../src/assets"));
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
@@ -17,7 +16,10 @@ app.get('*', (req, res) => {
 });
 
 app.post('/uploads/', upload.any(), (req, res)=>{
-    console.log(req.files);
+    res.status(200).json({"success":true});
+});
+
+app.delete('*', (req, res)=>{
     res.status(200).json({"success":true});
 });
 
