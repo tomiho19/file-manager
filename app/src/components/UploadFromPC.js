@@ -33,27 +33,41 @@ class UploadFromPC extends Component {
         };
 
         uploader.on('complete', (id, n, response) => {
+
+
             let data = response.data[0];
+            let fill = response.fill;
+
             let {filename, originalname, path, size} = data;
             let ftype = originalname.split(".")[1];
             let name  = originalname.split(".")[0];
+
+
             this.setState({id : filename});
-            this.props.dispatch(uploadNewFile(filename, name, path, ftype, size));
+
+           this.props.dispatch(uploadNewFile(filename, name, path, ftype, size, fill));
+
         });
 
+
         uploader.on('delete', (id, n, response) => {
-            console.log(this.state.id,this.props);
             this.props.dispatch(deleteFile(this.state.id));
-            console.log(this.props.files);
         })
     }
 
+    _change(e){
+        console.log("HERE");
+        let fr = new FileReader();
+        fr.onload(info => console.log(info));
+        fr.readAsText(this.files[0]);
+    }
 
     render() {
         return (
             <div className="row">
                 <div className="col-md-12">
                     <Gallery
+                        onChange = {this._change.bind(this)}
                         uploader={ uploader }
                     />
                 </div>

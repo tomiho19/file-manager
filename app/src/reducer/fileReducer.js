@@ -29,30 +29,46 @@ const fileReducer = (state = data, action) => {
             _updateLocalStorage(state);
             return state;
 
+
         case CONSTANTS.UPLOAD_NEW_FILE:
+
             let uploadData = state.slice();
-            uploadData.push({
-                FileId : action.id,
-                FileName : action.name,
-                FileType : action.ftype,
-                FileSize : action.size,
-                FileSrc : action.src
-            });
-            _updateLocalStorage(uploadData);
+
+            let checkForCorrectUpload = uploadData.find(el => el.FileName === action.name); //Проверка.Если файл уже загружен
+            if(!checkForCorrectUpload){
+                uploadData.push({
+                    FileId : action.id,
+                    FileName : action.name,
+                    FileType : action.ftype,
+                    FileSize : action.size,
+                    FileSrc : action.src,
+                    FileFill : action.fill
+                });
+                _updateLocalStorage(uploadData);
+            }
+
             return uploadData;
 
+
         case CONSTANTS.CREATE_NEW_FILE:
+
             let createData = state.slice();
-            createData.push({
-                FileId   : action.id,
-                FileName : action.name,
-                FileFill : action.text,
-                FileType : action.ftype,
-                FileSize : action.size,
-                FileSrc  : "/"
-            });
-            _updateLocalStorage(createData);
+
+            let checkForCorrectCreate = createData.find(el => el.FileName === action.name); //Проверка.Если файл уже создан
+            if(!checkForCorrectCreate){
+                createData.push({
+                    FileId   : action.id,
+                    FileName : action.name,
+                    FileFill : action.text,
+                    FileType : action.ftype,
+                    FileSize : action.size,
+                    FileSrc  : "/"
+                });
+                _updateLocalStorage(createData);
+            }
+
             return createData;
+
 
         case CONSTANTS.DELETE_FILE:
             let filteredData = state.slice().filter(el=>el.FileId.toString() !== action.id);

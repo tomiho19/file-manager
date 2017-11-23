@@ -4,6 +4,7 @@ import { Button, DropdownButton, MenuItem } from 'react-bootstrap'
 import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
 
+
 export default class Actions extends Component{
 
     constructor(props){
@@ -14,11 +15,15 @@ export default class Actions extends Component{
         ReactGA.initialize('UA-109328131-1');
         ReactGA.pageview(window.location.pathname + window.location.search);
 
+
         this.state = {
             router : this.props.router,
+            src    : ""
         };
 
     }
+
+
 
     _delete(){
 
@@ -67,8 +72,6 @@ export default class Actions extends Component{
         //Отслеживание клика на предварительный просмотр
         ReactGA.ga('send', 'event', 'Click', 'Preview');
 
-        document.location.href = this.props.src;
-
     }
 
     _download(){
@@ -76,31 +79,42 @@ export default class Actions extends Component{
         //Отслеживание клика на загрузку файла
         ReactGA.ga('send', 'event', 'Click', 'Download');
 
+
     }
 
     render(){
+        let src = "";
+            if(this.props.src){
+                let searchSrc = this.props.src.split('\\');
+                src = searchSrc[1] + '\\' + searchSrc[2];
+                console.clear();
+            }
 
         return <div className="actions col-md-2">
             {this.props.selected
                 ?
                     <div className="well" >
-                        <Button
+                        <a
                             id={"btn_download"}
                             bsSize="small"
                             onClick={this._download.bind(this)}
+                            href={src}
+                            download
                             bsStyle="primary"
-                            href={this.props.src}
-                            download>
+                            className={"btn btn-primary"}
+                            >
                             Download
-                        </Button><br/>
-                        <Button
+                        </a><br/>
+                        <a
                             id={"btn_preview"}
                             bsSize="small"
                             onClick={this._preview.bind(this)}
                             bsStyle="success"
-                            href={this.props.src} >
+                            className={"btn btn-success test-popup-link"}
+                            href={src}
+                            >
                             Preview
-                        </Button><br/>
+                        </a><br/>
                         <Button
                             id={"btn_delete"}
                             bsSize="small"

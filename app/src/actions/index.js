@@ -59,7 +59,7 @@ export const deleteFile = (id) => {
     }
 };
 
-export const uploadNewFile = (id, name, src, ftype, size ) => {
+export const uploadNewFile = (id, name, src, ftype, size, fill ) => {
     //Событие и время добавления нового файла
     let time = new Date();
     window.info.push(`The file have been uploaded! on ${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`);
@@ -71,5 +71,6 @@ export const uploadNewFile = (id, name, src, ftype, size ) => {
         src,
         ftype,
         size,
+        fill
     }
 };

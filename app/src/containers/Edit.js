@@ -62,10 +62,22 @@ class Edit extends Component{
     }
 
     _setContent(item){
-        console.log(item);
+        let searchSrc = "";
+        let src = "";
+        if(item.FileSrc){
+            searchSrc = item.FileSrc.split('\\');
+            src = searchSrc[1] + '\\' + searchSrc[2];
+        }
+
         switch (item.FileType){
-            case "jpg" : return `<img src=${item.FileSrc} ></img>`;
-            default: return item.FileFill
+            case "jpg" :
+            case "jpeg":
+            case "png":
+                return `<img src=${src} width="50%" height="50%"></img>`;
+            case "txt":
+            case "html":
+                return `<p>${item.FileFill}</p>`
+            default: return src
         }
 
     }
@@ -105,7 +117,7 @@ class Edit extends Component{
                         "change": this.onChange.bind(this)
                     }}
                 />
-                <p>Click anywhere for save or cancel</p>
+                <p>Click anywhere for save</p>
             </div>
 
         )
