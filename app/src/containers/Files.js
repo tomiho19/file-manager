@@ -152,7 +152,7 @@ class Files extends Component{
 }
 
 Files.propTypes = {
-    files    : PropTypes.array.isRequired,
+    files    : PropTypes.object.isRequired,
     router   : PropTypes.object.isRequired,
     dispatch : PropTypes.func.isRequired
 };

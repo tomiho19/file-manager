@@ -1,13 +1,5 @@
 import CONSTANTS from '../constants/AppConstants'
-
-const bookmarks = [
-    {
-        BookmarkId : "11",
-        BookmarkName : "index",
-        BookmarkSrc  : "http://www.petsworld.in/blog/wp-content/uploads/2014/09/adorable-cat.jpg"
-    }
-];
-
+import { bookmarks } from "../store/store"
 let localStorage = window.localStorage;
 
 const _updateLocalStorage = state => {//Функция для обновления localStorage ,вызывается после каждого события которое связано с изменением state

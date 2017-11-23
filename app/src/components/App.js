@@ -9,7 +9,7 @@ import Root from "./Root"
 import Edit from "../containers/Edit"
 import UploadFromPC from "./UploadFromPC"
 import UploadFromFb from "./UploadFromFB"
-import store from "../store/store"
+import store from "../store/index"
 
 
 export default class App extends Component{

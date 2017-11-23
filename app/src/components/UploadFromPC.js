@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-
-import FineUploaderTraditional from 'fine-uploader-wrappers'
-import Gallery from 'react-fine-uploader'
-import 'react-fine-uploader/gallery/gallery.css'
+import React, { Component } from 'react';
+import { uploadNewFile, deleteFile } from "../actions/index";
+import FineUploaderTraditional from 'fine-uploader-wrappers';
+import Gallery from 'react-fine-uploader';
+import { connect } from 'react-redux';
+import 'react-fine-uploader/gallery/gallery.css';
 
 const uploader = new FineUploaderTraditional({
 
@@ -17,27 +18,35 @@ const uploader = new FineUploaderTraditional({
         },
         request: {
             endpoint: 'uploads/'
-        },
-        retry: {
-            enableAuto: false
         }
-    }
-
+    },
 });
 
-export default class UploadFromPC extends Component {
+class UploadFromPC extends Component {
 
     constructor(props){
 
         super(props);
 
         this.state = {
-            submittedFiles : []
+            id : null
         };
 
+        uploader.on('complete', (id, n, response) => {
+            let data = response.data[0];
+            let {filename, originalname, path, size} = data;
+            let ftype = originalname.split(".")[1];
+            let name  = originalname.split(".")[0];
+            this.setState({id : filename});
+            this.props.dispatch(uploadNewFile(filename, name, path, ftype, size));
+        });
+
+        uploader.on('delete', (id, n, response) => {
+            console.log(this.state.id,this.props);
+            this.props.dispatch(deleteFile(this.state.id));
+            console.log(this.props.files);
+        })
     }
-
-
 
 
     render() {
@@ -53,9 +62,16 @@ export default class UploadFromPC extends Component {
     }
 }
 
-const isFileGone = status => {
-    return [
-        'canceled',
-        'deleted',
-    ].indexOf(status) >= 0
+const mapStateToProps = (state)=>{
+    return{
+        files : state.fileReducer
+    }
 };
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UploadFromPC)

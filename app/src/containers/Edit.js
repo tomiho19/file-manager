@@ -58,11 +58,11 @@ class Edit extends Component{
     }
 
     afterPaste(e){
-        console.log("afterPaste event called with event info: ", e);
+
     }
 
     _setContent(item){
-
+        console.log(item);
         switch (item.FileType){
             case "jpg" : return `<img src=${item.FileSrc} ></img>`;
             default: return item.FileFill
