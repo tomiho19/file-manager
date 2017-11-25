@@ -80,7 +80,6 @@ class Files extends Component{
 
         let searchData = data.filter(el=>{
             return regExpValue.test(el.FileName);
-            //el.FileName.toLowerCase().indexOf(searchValue) !== -1; //Поиск элемента по имени
         });
 
         this.setState({

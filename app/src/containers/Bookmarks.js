@@ -52,8 +52,10 @@ class Bookmarks extends Component{
             return;
         }
 
+        let regExpValue = new RegExp(searchValue, "i");
+
         let searchData = data.filter(el=>{
-            return el.BookmarkName.toLowerCase().indexOf(searchValue) !== -1; //Поиск элемента по имени
+            return regExpValue.test(el.BookmarkName);
         });
 
         this.setState({
