@@ -76,8 +76,11 @@ class Files extends Component{
             return;
         }
 
+        let regExpValue = new RegExp(searchValue, "i");
+
         let searchData = data.filter(el=>{
-            return el.FileName.toLowerCase().indexOf(searchValue) !== -1; //Поиск элемента по имени
+            return regExpValue.test(el.FileName);
+            //el.FileName.toLowerCase().indexOf(searchValue) !== -1; //Поиск элемента по имени
         });
 
         this.setState({

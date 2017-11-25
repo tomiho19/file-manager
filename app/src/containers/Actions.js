@@ -83,11 +83,10 @@ export default class Actions extends Component{
     }
 
     render(){
-        let src = "";
-            if(this.props.src){
+        let src = this.props.src;
+            if(this.props.src && (this.props.src.indexOf("uploads") !== -1)){
                 let searchSrc = this.props.src.split('\\');
                 src = searchSrc[1] + '\\' + searchSrc[2];
-                console.clear();
             }
 
         return <div className="actions col-md-2">

@@ -63,9 +63,9 @@ class Edit extends Component{
 
     _setContent(item){
         let searchSrc = "";
-        let src = "";
-        if(item.FileSrc){
-            searchSrc = item.FileSrc.split('\\');
+        let src = item.FileSrc;
+        if(src && (item.FileSrc.indexOf("uploads") !== -1)){
+            searchSrc = src.split('\\');
             src = searchSrc[1] + '\\' + searchSrc[2];
         }
 
