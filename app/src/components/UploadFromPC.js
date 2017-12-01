@@ -4,6 +4,7 @@ import FineUploaderTraditional from 'fine-uploader-wrappers';
 import Gallery from 'react-fine-uploader';
 import { connect } from 'react-redux';
 import 'react-fine-uploader/gallery/gallery.css';
+import {useShallowEqual} from 'shouldcomponentupdate-children';
 
 const uploader = new FineUploaderTraditional({
 
@@ -22,7 +23,7 @@ const uploader = new FineUploaderTraditional({
     },
 });
 
-class UploadFromPC extends Component {
+class CUploadFromPC extends Component {
 
     constructor(props){
 
@@ -87,5 +88,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch
     }
 };
+
+const UploadFromPC = useShallowEqual(CUploadFromPC);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadFromPC)

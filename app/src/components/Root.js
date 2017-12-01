@@ -1,8 +1,9 @@
 import React , { Component } from 'react'
 import { Link } from 'react-router'
 import { Modal } from 'react-bootstrap'
+import {useShallowEqual} from 'shouldcomponentupdate-children';
 
-export default class Root extends Component{
+class CRoot extends Component{
 
     constructor(props){
         super(props);
@@ -55,4 +56,8 @@ export default class Root extends Component{
             </main>
         )
     }
-};
+}
+
+const Root = useShallowEqual(CRoot);
+
+export default Root;

@@ -1,7 +1,8 @@
 import React ,{Component} from 'react'
 import PropTypes from 'prop-types'
+import {useShallowEqual} from 'shouldcomponentupdate-children';
 
-export default class Search extends Component{
+class CSearch extends Component{
     render(){
         return(
             <input
@@ -14,6 +15,10 @@ export default class Search extends Component{
     }
 }
 
-Search.propTypes = {
+CSearch.propTypes = {
     methodForSearch : PropTypes.func.isRequired
 };
+
+const Search = useShallowEqual(CSearch);
+
+export default Search;

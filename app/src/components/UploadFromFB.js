@@ -3,25 +3,28 @@ import {uploadNewFile} from "../actions/index";
 import {connect} from 'react-redux'
 import FacebookLogin from 'react-facebook-login'
 import graph from 'fb-react-sdk';
+import faker  from 'faker'
+import {useShallowEqual} from 'shouldcomponentupdate-children';
+
+graph.setAccessToken("EAAcB4AnWZCMcBALAsYUiGLIrygkttbbmRppID4TSAl04gRO19QRD5WXl7pZAS0IY9hzkEwFU44zgtjlaocZBOaBDi3xDZBMSFTPmL36DttZA0UYjSdtQJCkUEMMidmfDXOgira2mTc5Px56BNWT0QVRiC6ZAoHZC6IOHWL19ooULL8ZBF064jj9JSEoh5i69BEg8eCIP5NiWxwZDZD");
 
 
-graph.setAccessToken("EAAcB4AnWZCMcBAN5pG5DfIXW6XbaFAZAiV0Fn3DoWXV8coSL18qZB1ODz43zWUv3sqH8hbvJ9R9P1425x3nZCKi0Q07GDVAsGHE1vgQW6cTwA2WYZBLrVEtcrWphisxTyEEZAKolZBZCgLC3imPJwQEJDfIJKgZABeeAzZBT5Uko9ShNIE2QjRaldnDVIztjzyo5cZD");
-
-
-class UploadFromFB extends Component{
+class CUploadFromFB extends Component{
 
     constructor(props){
         super(props);
         this.state = {
             data : null,
-            dispatch: this.props.dispatch
+            dispatch: this.props.dispatch,
+            router : this.props.router
         }
     }
 
     _onClick(e){
+        console.log(this.state.router);
         let src = e.target.getAttribute("src");
-        this.state.dispatch(uploadNewFile(111,"new file from FB",src,"jpg","18", " "));
-
+        this.state.dispatch(uploadNewFile(faker.system.fileName(), faker.system.fileName(), src, "jpg", faker.random.number(), " "));
+        this.state.router.push("Files");
     }
 
     _componentClicked(e){
@@ -29,6 +32,7 @@ class UploadFromFB extends Component{
     }
 
     _responseFacebook(res){
+        console.log(res);
         graph.get("me/photos?fields=images&type=uploaded", (err,res)=>{
             if(err)
                 throw err;
@@ -46,7 +50,8 @@ class UploadFromFB extends Component{
                             appId={"1972386586361031"}
                             autoLoad={true}
                             version={"2.11"}
-                            fields={"name"}
+                            scope={"user_photos,email"}
+                            fields={"name,email"}
                             onClick={this._componentClicked.bind(this)}
                             callback={this._responseFacebook.bind(this)}
                             cssClass="btn-facebook"
@@ -96,5 +101,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch
     }
 };
+
+const UploadFromFB = useShallowEqual(CUploadFromFB);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadFromFB)

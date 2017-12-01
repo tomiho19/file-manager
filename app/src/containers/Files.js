@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-
+import debounce from 'lodash.debounce'
 import Search from '../components/Search'
 import FileItem from '../components/FileItem'
 import Actions from './Actions'
-
+import {useShallowEqual} from 'shouldcomponentupdate-children';
 import { connect } from 'react-redux'
 import headers from "../assets/headers"
 import PropTypes from 'prop-types'
 
 
-class Files extends Component{
+class CFiles extends Component{
 
     constructor(props){
 
@@ -24,7 +24,7 @@ class Files extends Component{
             currentFileName: "",  //Name текущего выбраного элемента
             currentFileSrc: ""    //Src текущего выбраного элемента
         };
-
+        this._search = debounce(this._search, 300);
     }
 
     componentWillReceiveProps(nextProps){
@@ -64,9 +64,9 @@ class Files extends Component{
 
     }
 
-    _search(e){
+    _search(value){
 
-        let searchValue = e.target.value.toLowerCase();
+        let searchValue = value.toLowerCase();
         let data = this.state.data.slice();
 
         if(!searchValue){                  //Если поле поиска очищено тогда возвращаем состояние до поиска
@@ -99,7 +99,9 @@ class Files extends Component{
 
     }
 
-
+    change(e){
+        this._search(e.target.value);
+    }
 
     render(){
         return(
@@ -146,14 +148,14 @@ class Files extends Component{
                          dispatch = {this.props.dispatch}
                 />
                 <div className="col-md-3">
-                    <Search methodForSearch = {this._search.bind(this)}/>
+                    <Search methodForSearch = {this.change.bind(this)}/>
                 </div>
             </div>
         )
     }
 }
 
-Files.propTypes = {
+CFiles.propTypes = {
     files    : PropTypes.object.isRequired,
     router   : PropTypes.object.isRequired,
     dispatch : PropTypes.func.isRequired
@@ -170,5 +172,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch
     }
 };
+
+const Files = useShallowEqual(CFiles);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Files)

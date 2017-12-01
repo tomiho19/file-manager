@@ -1,10 +1,12 @@
 import React , { Component } from 'react'
+import {useShallowEqual} from 'shouldcomponentupdate-children'
+import debounce from 'lodash.debounce'
 import { connect } from 'react-redux'
 import Bookmark from "../components/Bookmark";
 import Search from '../components/Search';
 import PropTypes from 'prop-types';
 
-class Bookmarks extends Component{
+class CBookmarks extends Component{
 
     constructor(props){
 
@@ -90,16 +92,18 @@ class Bookmarks extends Component{
                     </table>
                 </div>
                 <div className="col-md-3">
-                    <Search methodForSearch = {this._search.bind(this)}/>
+                    <Search methodForSearch = {debounce(this._search.bind(this))}/>
                 </div>
             </div>
         )
     }
 }
 
-Bookmarks.propTypes = {
+CBookmarks.propTypes = {
     bookmarks   : PropTypes.array.isRequired
 };
+
+const Bookmarks = useShallowEqual(CBookmarks);
 
 const mapStateToProps = (state)=>{
     return{

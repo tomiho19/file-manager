@@ -1,7 +1,7 @@
 import React ,{Component} from 'react'
 import { Provider } from 'react-redux'
 import { Router, Route, hashHistory } from 'react-router'
-
+import {useShallowEqual} from 'shouldcomponentupdate-children';
 import Bookmarks from "../containers/Bookmarks"
 import Files from "../containers/Files"
 import Upload from "./Upload"
@@ -12,7 +12,7 @@ import UploadFromFb from "./UploadFromFB"
 import store from "../store/index"
 
 
-export default class App extends Component{
+class CApp extends Component{
     render(){
        return(
         <Provider store={store}>
@@ -32,3 +32,7 @@ export default class App extends Component{
        );
    }
 }
+
+const App = useShallowEqual(CApp);
+
+export default App;

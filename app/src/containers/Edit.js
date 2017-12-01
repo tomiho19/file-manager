@@ -1,10 +1,12 @@
 import React , { Component } from 'react'
 import { connect } from 'react-redux'
+import {useShallowEqual} from 'shouldcomponentupdate-children';
 import { editFile, createNewFile } from '../actions/index'
 import CKEditor from 'react-ckeditor-component'
 import PropTypes from 'prop-types'
+import faker from 'faker'
 
-class Edit extends Component{
+class CEdit extends Component{
 
     constructor(props){
 
@@ -93,9 +95,9 @@ class Edit extends Component{
         }else{
 
             let id = Date.now();
-            let name = "new";
+            let name = faker.system.fileName();
             let type = "txt";
-            let size = 1;
+            let size = faker.random.number();
 
             this.props.dispatch(createNewFile(id, name, text, type, size));
 
@@ -124,7 +126,7 @@ class Edit extends Component{
     }
 }
 
-Edit.propTypes = {
+CEdit.propTypes = {
     files    : PropTypes.array.isRequired,
     id       : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     router   : PropTypes.object.isRequired,
@@ -142,5 +144,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch
     }
 };
+
+const Edit = useShallowEqual(CEdit);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit)

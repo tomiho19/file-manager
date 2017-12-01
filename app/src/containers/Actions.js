@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import {useShallowEqual} from 'shouldcomponentupdate-children';
 import { deleteFile, deleteBookmark, createBookmark } from '../actions/index'
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap'
 import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
 
 
-export default class Actions extends Component{
+class CActions extends Component{
 
     constructor(props){
 
@@ -160,7 +161,7 @@ export default class Actions extends Component{
     }
 }
 
-Actions.propTypes = {
+CActions.propTypes = {
     router   : PropTypes.object.isRequired,
     dispatch : PropTypes.func.isRequired,
     update   : PropTypes.func.isRequired,
@@ -169,3 +170,7 @@ Actions.propTypes = {
     name     : PropTypes.string,
     selected : PropTypes.bool.isRequired
 };
+
+const Actions = useShallowEqual(CActions);
+
+export default Actions;

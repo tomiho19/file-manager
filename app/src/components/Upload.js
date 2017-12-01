@@ -1,7 +1,8 @@
 import React , { Component } from 'react'
 import { Link } from 'react-router'
+import {useShallowEqual} from 'shouldcomponentupdate-children';
 
-export default class Upload extends Component{
+class CUpload extends Component{
     render(){
         return(
             <div className="row uploads__PC__FB">
@@ -15,3 +16,7 @@ export default class Upload extends Component{
         )
     }
 }
+
+const Upload = useShallowEqual(CUpload);
+
+export default Upload;
