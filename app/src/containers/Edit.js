@@ -71,7 +71,7 @@ class CEdit extends Component{
             src = searchSrc[1] + '\\' + searchSrc[2];
         }
 
-        switch (item.FileType){
+        switch (item.FileType.toLowerCase()){
             case "jpg" :
             case "jpeg":
             case "png":
