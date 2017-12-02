@@ -33,7 +33,7 @@ class CFiles extends Component{
         })
     }
 
-    _sort(e){
+    _sort = (e) => {
 
         let column = e.target.cellIndex.toString(); //Номер столбца сортировки
         let  sortedData = this.state.data.slice();
@@ -62,9 +62,9 @@ class CFiles extends Component{
             descending: descending
         });
 
-    }
+    };
 
-    _search(value){
+    _search = (value) =>{
 
         let searchValue = value.toLowerCase();
         let data = this.state.data.slice();
@@ -88,7 +88,7 @@ class CFiles extends Component{
 
     }
 
-    _update(id, name, src){
+    _update = (id, name, src) => {
 
         this.setState({
             currentFileId : id,
@@ -97,18 +97,18 @@ class CFiles extends Component{
             selected : !this.state.selected
         });
 
-    }
+    };
 
-    change(e){
+    change = (e) => {
         this._search(e.target.value);
-    }
+    };
 
     render(){
         return(
             <div className="row">
                 <div className="col-md-7">
                     <table className="table table__files">
-                        <thead onClick={this._sort.bind(this)}>
+                        <thead onClick={this._sort}>
                         <tr>
                             {
                                 headers.map((el,index)=>{
@@ -130,7 +130,7 @@ class CFiles extends Component{
                                               type = {el.FileType}
                                               size = {el.FileSize}
                                               src  = {el.FileSrc}
-                                              _update = {this._update.bind(this)}
+                                              _update = {this._update}
                                     />
                                 )
                             })
@@ -144,11 +144,11 @@ class CFiles extends Component{
                          src ={this.state.currentFileSrc}
                          name = {this.state.currentFileName}
                          id={this.state.currentFileId}
-                         update = {this._update.bind(this)}
+                         update = {this._update}
                          dispatch = {this.props.dispatch}
                 />
                 <div className="col-md-3">
-                    <Search methodForSearch = {this.change.bind(this)}/>
+                    <Search methodForSearch = {this.change}/>
                 </div>
             </div>
         )

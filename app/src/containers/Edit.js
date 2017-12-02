@@ -46,22 +46,22 @@ class CEdit extends Component{
 
     }
 
-    onChange(e){
+    onChange = (e) => {
 
         let newContent = e.editor.getData();
         this.setState({
             data: newContent
         })
 
-    }
+    };
 
-    onBlur(e){
+    onBlur = (e) => {
         this._save(e.editor._.data);
-    }
+    };
 
-    afterPaste(e){
+    afterPaste = (e) => {
 
-    }
+    };
 
     _setContent(item){
         let searchSrc = "";
@@ -114,9 +114,9 @@ class CEdit extends Component{
                     activeClass="CKEditor-container"
                     content={this.state.content}
                     events={{
-                        "blur": this.onBlur.bind(this),
-                        "afterPaste": this.afterPaste.bind(this),
-                        "change": this.onChange.bind(this)
+                        "blur": this.onBlur,
+                        "afterPaste": this.afterPaste,
+                        "change": this.onChange
                     }}
                 />
                 <p>Click anywhere for save</p>

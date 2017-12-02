@@ -56,19 +56,19 @@ class CUploadFromPC extends Component {
         })
     }
 
-    _change(e){
+    _change = (e) => {
         console.log("HERE");
         let fr = new FileReader();
         fr.onload(info => console.log(info));
         fr.readAsText(this.files[0]);
-    }
+    };
 
     render() {
         return (
             <div className="row">
                 <div className="col-md-12">
                     <Gallery
-                        onChange = {this._change.bind(this)}
+                        onChange = {this._change}
                         uploader={ uploader }
                     />
                 </div>

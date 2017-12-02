@@ -20,18 +20,18 @@ class CUploadFromFB extends Component{
         }
     }
 
-    _onClick(e){
+    _onClick = (e) => {
         console.log(this.state.router);
         let src = e.target.getAttribute("src");
         this.state.dispatch(uploadNewFile(faker.system.fileName(), faker.system.fileName(), src, "jpg", faker.random.number(), " "));
         this.state.router.push("Files");
-    }
+    };
 
-    _componentClicked(e){
+    _componentClicked = (e) => {
         console.log(e);
-    }
+    };
 
-    _responseFacebook(res){
+    _responseFacebook = (res) => {
         console.log(res);
         graph.get("me/photos?fields=images&type=uploaded", (err,res)=>{
             if(err)
@@ -39,7 +39,7 @@ class CUploadFromFB extends Component{
             let data = res.data;
             this.setState({data});
         });
-    }
+    };
 
     render(){
         return (
@@ -52,8 +52,8 @@ class CUploadFromFB extends Component{
                             version={"2.11"}
                             scope={"user_photos,email"}
                             fields={"name,email"}
-                            onClick={this._componentClicked.bind(this)}
-                            callback={this._responseFacebook.bind(this)}
+                            onClick={this._componentClicked}
+                            callback={this._responseFacebook}
                             cssClass="btn-facebook"
                         />
                     </div>
@@ -64,7 +64,7 @@ class CUploadFromFB extends Component{
                                         this.state.data.map((el,i) => {
                                             return (<div className="row" key={i}>
                                                 <div className="col-md-12" key={i}>
-                                                    <a href="#" onClick={this._onClick.bind(this)}>
+                                                    <a href="#" onClick={this._onClick}>
                                                         <img
                                                             className={"image-item"}
                                                             key={el.images[0].source}

@@ -21,7 +21,7 @@ class CBookmarks extends Component{
 
     }
 
-    _sort(){
+    _sort = () => {
 
 
         let  sortedData = this.state.data.slice();
@@ -40,9 +40,9 @@ class CBookmarks extends Component{
             descending: !descending
         });
 
-    }
+    };
 
-    _search(e){
+    _search = (e) => {
 
         let searchValue = e.target.value.toLowerCase();
         let data = this.state.data.slice();
@@ -64,7 +64,7 @@ class CBookmarks extends Component{
             data : searchData // Обновление state соответствующим элементом
         })
 
-    }
+    };
 
 
     render(){
@@ -74,7 +74,7 @@ class CBookmarks extends Component{
                     <table className={"table table__bookmarks"}>
                         <thead>
                         <tr>
-                            <th onClick={this._sort.bind(this)}>
+                            <th onClick={this._sort}>
                                 Bookmarks {this.state.descending ? '\u2191' : '\u2193'}
                             </th>
                         </tr>
@@ -92,7 +92,7 @@ class CBookmarks extends Component{
                     </table>
                 </div>
                 <div className="col-md-3">
-                    <Search methodForSearch = {debounce(this._search.bind(this))}/>
+                    <Search methodForSearch = {debounce(this._search)}/>
                 </div>
             </div>
         )

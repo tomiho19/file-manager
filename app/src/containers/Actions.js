@@ -26,7 +26,7 @@ class CActions extends Component{
 
 
 
-    _delete(){
+    _delete = () => {
 
         //Отслеживание клика на удаление файла
         ReactGA.ga('send', 'event', 'Click', 'Delete');
@@ -35,9 +35,9 @@ class CActions extends Component{
         this.props.update();
         this.state.router.replace("/Files")
 
-    }
+    };
 
-    _bookmarkAdd(){
+    _bookmarkAdd = () => {
 
         //Отслеживание клика на добавление заметки
         ReactGA.ga('send', 'event', 'Click', 'Bookmark add');
@@ -46,9 +46,9 @@ class CActions extends Component{
         dispatch(createBookmark(id,name,src));
         this.state.router.replace(`/bookmarks/${id}`);
 
-    }
+    };
 
-    _bookmarkDelete(){
+    _bookmarkDelete = () => {
 
         //Отслеживание клика на удаление заметки
         ReactGA.ga('send', 'event', 'Click', 'Bookmark delete');
@@ -57,9 +57,9 @@ class CActions extends Component{
         dispatch(deleteBookmark(id));
         this.state.router.replace(`/bookmarks/${id}`);
 
-    }
+    };
 
-    _edit(){
+    _edit = () => {
 
         //Отслеживание клика на редактирование файла
         ReactGA.ga('send', 'event', 'Click', 'Edit');
@@ -68,20 +68,20 @@ class CActions extends Component{
 
     }
 
-    _preview(){
+    _preview = () => {
 
         //Отслеживание клика на предварительный просмотр
         ReactGA.ga('send', 'event', 'Click', 'Preview');
 
-    }
+    };
 
-    _download(){
+    _download = () => {
 
         //Отслеживание клика на загрузку файла
         ReactGA.ga('send', 'event', 'Click', 'Download');
 
 
-    }
+    };
 
     render(){
         let src = this.props.src;
@@ -97,7 +97,7 @@ class CActions extends Component{
                         <a
                             id={"btn_download"}
                             bsSize="small"
-                            onClick={this._download.bind(this)}
+                            onClick={this._download}
                             href={src}
                             download
                             bsStyle="primary"
@@ -108,7 +108,7 @@ class CActions extends Component{
                         <a
                             id={"btn_preview"}
                             bsSize="small"
-                            onClick={this._preview.bind(this)}
+                            onClick={this._preview}
                             bsStyle="success"
                             className={"btn btn-success test-popup-link"}
                             href={src}
@@ -119,7 +119,7 @@ class CActions extends Component{
                             id={"btn_delete"}
                             bsSize="small"
                             bsStyle="danger"
-                            onClick={this._delete.bind(this)}
+                            onClick={this._delete}
                             className={"btn btn-sm"}>
                             Delete
                         </Button><br/>
@@ -133,14 +133,14 @@ class CActions extends Component{
                                     id = {"btn_addBookmark"}
                                     className = "drp_dwn_btn-item btn-sm"
                                     eventKey="1"
-                                    onClick={this._bookmarkAdd.bind(this)}>
+                                    onClick={this._bookmarkAdd}>
                                     Add
                                 </MenuItem>
                                 <MenuItem
                                     id = {"btn_deleteBookmark"}
                                     className = "drp_dwn_btn-item btn-sm"
                                     eventKey="2"
-                                    onClick={this._bookmarkDelete.bind(this)}>
+                                    onClick={this._bookmarkDelete}>
                                     Delete
                                 </MenuItem>
                         </DropdownButton><br/>
@@ -149,7 +149,7 @@ class CActions extends Component{
                             id={"btn_edit"}
                             bsStyle="warning"
                             className={"btn btn-edit btn-sm"}
-                            onClick={this._edit.bind(this)}>
+                            onClick={this._edit}>
                             Edit
                         </Button><br/>
 

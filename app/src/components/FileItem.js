@@ -5,15 +5,15 @@ import {useShallowEqual} from 'shouldcomponentupdate-children';
 
 class CFileItem extends Component{
 
-    selectItem(){
+    selectItem = () => {
         let { id, name, src } = this.props;
         this.props._update(id, name, src); //Передача даных о текущем выбраном элемента
-    }
+    };
 
     render(){
         const { name, type, size, id } = this.props;
         return(
-            <tr key={ id } onClick={ this.selectItem.bind(this) }>
+            <tr key={ id } onClick={ this.selectItem }>
                 <td>{ name }</td>
                 <td>{ type }</td>
                 <td>{ size }</td>
