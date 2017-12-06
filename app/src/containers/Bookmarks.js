@@ -17,8 +17,8 @@ class CBookmarks extends Component{
             _preSearchData : this.props.bookmarks,  //Копия данных
             sortby : null,      //Номер столбца сортировки
             descending : false, //Порядок сортировки (возрастанию или убыванию)
-        }
-
+        };
+        this._search = debounce(this._search, 300);
     }
 
     _sort = () => {
@@ -42,9 +42,9 @@ class CBookmarks extends Component{
 
     };
 
-    _search = (e) => {
+    _search = (value) => {
 
-        let searchValue = e.target.value.toLowerCase();
+        let searchValue = value.toLowerCase();
         let data = this.state.data.slice();
 
         if(!searchValue){   //Если поле поиска очищено тогда возвращаем состояние до поиска
@@ -66,6 +66,9 @@ class CBookmarks extends Component{
 
     };
 
+    change = (e) => {
+        this._search(e.target.value);
+    };
 
     render(){
         return(
@@ -92,7 +95,7 @@ class CBookmarks extends Component{
                     </table>
                 </div>
                 <div className="col-md-3">
-                    <Search methodForSearch = {debounce(this._search)}/>
+                    <Search methodForSearch = {this.change}/>
                 </div>
             </div>
         )

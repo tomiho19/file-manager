@@ -6,7 +6,7 @@ import graph from 'fb-react-sdk';
 import faker  from 'faker'
 import {useShallowEqual} from 'shouldcomponentupdate-children';
 
-graph.setAccessToken("EAAcB4AnWZCMcBALAsYUiGLIrygkttbbmRppID4TSAl04gRO19QRD5WXl7pZAS0IY9hzkEwFU44zgtjlaocZBOaBDi3xDZBMSFTPmL36DttZA0UYjSdtQJCkUEMMidmfDXOgira2mTc5Px56BNWT0QVRiC6ZAoHZC6IOHWL19ooULL8ZBF064jj9JSEoh5i69BEg8eCIP5NiWxwZDZD");
+graph.setAccessToken("EAAcB4AnWZCMcBABz4C8Sxb9odrvURftMfINnH3OYcFb4xMCvaMGlzZBQRmBStrauhsAFOTJ1BZBn3lpcPvwV1GNUndot2u5yEZAKOzGI4Ammo6fZBVZCiubSFUi9JfpTDE66gYJ6pfZAjNStSJ3P6nacAoXR6IFkPeJv09kKBrP01sENWZCos0zp5Ny9m45cV9HZB5EQ9ay3ZCRwZDZD");
 
 
 class CUploadFromFB extends Component{
